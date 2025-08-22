@@ -5723,10 +5723,10 @@
                                 }
                                 
                                 return highlights.map(highlight => `
-                                    <div class="highlight-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>${highlight}</span>
-                                    </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>${highlight}</span>
+                                </div>
                                 `).join('');
                             })()}
                         </div>
@@ -5753,38 +5753,38 @@
                                 if (Array.isArray(itinerary.restaurants)) {
                                     // If it's an array, map through it
                                     return itinerary.restaurants.map((restaurant, index) => `
-                                        <div class="restaurant-card premium ${index === 0 ? 'featured' : ''}">
-                                            <div class="restaurant-header">
-                                                <h4>${restaurant.name}</h4>
-                                                <div class="rating-badge">
-                                                    <i class="fas fa-star"></i>
-                                                    <span>4.${Math.floor(Math.random() * 4) + 5}</span>
-                                                </div>
-                                                ${index === 0 ? '<span class="featured-badge">Top Pick</span>' : ''}
-                                            </div>
-                                            <div class="restaurant-details">
-                                                <div class="detail-item">
-                                                    <i class="fas fa-utensils"></i>
-                                                    <span>Cuisine: ${restaurant.cuisine}</span>
-                                                </div>
-                                                <div class="detail-item">
-                                                    <i class="fas fa-rupee-sign"></i>
-                                                    <span>Price: ${restaurant.priceRange}</span>
-                                                </div>
-                                                <div class="detail-item">
-                                                    <i class="fas fa-award"></i>
-                                                    <span>Specialty: ${restaurant.specialty}</span>
-                                                </div>
-                                                <div class="detail-item location">
-                                                    <i class="fas fa-map-marker-alt"></i>
-                                                    <span>${restaurant.location}</span>
-                                                </div>
-                                            </div>
-                                            <div class="restaurant-tips">
-                                                <i class="fas fa-lightbulb"></i>
-                                                <span>Pro Tip: ${getRestaurantTip(restaurant, index)}</span>
-                                            </div>
+                                <div class="restaurant-card premium ${index === 0 ? 'featured' : ''}">
+                                    <div class="restaurant-header">
+                                        <h4>${restaurant.name}</h4>
+                                        <div class="rating-badge">
+                                            <i class="fas fa-star"></i>
+                                            <span>4.${Math.floor(Math.random() * 4) + 5}</span>
                                         </div>
+                                        ${index === 0 ? '<span class="featured-badge">Top Pick</span>' : ''}
+                                    </div>
+                                    <div class="restaurant-details">
+                                        <div class="detail-item">
+                                            <i class="fas fa-utensils"></i>
+                                            <span>Cuisine: ${restaurant.cuisine}</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-rupee-sign"></i>
+                                            <span>Price: ${restaurant.priceRange}</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-award"></i>
+                                            <span>Specialty: ${restaurant.specialty}</span>
+                                        </div>
+                                        <div class="detail-item location">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>${restaurant.location}</span>
+                                        </div>
+                                    </div>
+                                    <div class="restaurant-tips">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>Pro Tip: ${getRestaurantTip(restaurant, index)}</span>
+                                    </div>
+                                </div>
                                     `).join('');
                                 } else {
                                     // If no restaurants array, create cards from dining data in days
@@ -5920,33 +5920,33 @@
                                     if (Array.isArray(itinerary.accommodation)) {
                                         // If it's an array, map through it
                                         return itinerary.accommodation.map((hotel, index) => `
-                                            <div class="accommodation-card premium ${index === 0 ? 'recommended' : ''}">
-                                                <div class="hotel-header">
+                                    <div class="accommodation-card premium ${index === 0 ? 'recommended' : ''}">
+                                        <div class="hotel-header">
                                                     <h4>${hotel.name || 'Hotel'}</h4>
-                                                    <div class="hotel-badges">
+                                            <div class="hotel-badges">
                                                         <span class="hotel-type">${hotel.type || 'Accommodation'}</span>
-                                                        ${index === 0 ? '<span class="recommended-badge">Recommended</span>' : ''}
-                                                    </div>
-                                                </div>
-                                                <div class="hotel-details">
-                                                    <div class="price-info">
-                                                        <i class="fas fa-rupee-sign"></i>
-                                                        <span>${hotel.priceRange || 'Price on request'}</span>
-                                                    </div>
-                                                    <div class="location-info">
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                        <span>${hotel.location || 'Location'}</span>
-                                                    </div>
-                                                    <div class="features-info">
-                                                        <i class="fas fa-check-circle"></i>
-                                                        <span>${hotel.features || 'Standard amenities'}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="booking-note">
-                                                    <i class="fas fa-info-circle"></i>
-                                                    <span>Book 2-3 weeks in advance for best rates</span>
-                                                </div>
+                                                ${index === 0 ? '<span class="recommended-badge">Recommended</span>' : ''}
                                             </div>
+                                        </div>
+                                        <div class="hotel-details">
+                                            <div class="price-info">
+                                                <i class="fas fa-rupee-sign"></i>
+                                                        <span>${hotel.priceRange || 'Price on request'}</span>
+                                            </div>
+                                            <div class="location-info">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                        <span>${hotel.location || 'Location'}</span>
+                                            </div>
+                                            <div class="features-info">
+                                                <i class="fas fa-check-circle"></i>
+                                                        <span>${hotel.features || 'Standard amenities'}</span>
+                                            </div>
+                                        </div>
+                                        <div class="booking-note">
+                                            <i class="fas fa-info-circle"></i>
+                                            <span>Book 2-3 weeks in advance for best rates</span>
+                                        </div>
+                                    </div>
                                         `).join('');
                                     } else if (itinerary.accommodation && typeof itinerary.accommodation === 'object') {
                                         // If it's an object, create cards from the object properties
@@ -6033,25 +6033,25 @@
                                     if (Array.isArray(itinerary.transportation)) {
                                         // If it's an array, map through it
                                         return itinerary.transportation.map(transport => `
-                                            <div class="transport-card">
-                                                <div class="transport-header">
-                                                    <div class="transport-icon">
-                                                        <i class="fas fa-${getTransportIcon(transport.type)}"></i>
-                                                    </div>
-                                                    <h4>${transport.type}</h4>
-                                                </div>
-                                                <div class="transport-info">
-                                                    <div class="cost-info">
-                                                        <i class="fas fa-rupee-sign"></i>
-                                                        <span>${transport.cost}</span>
-                                                    </div>
-                                                    <p class="transport-desc">${transport.description}</p>
-                                                    <div class="transport-tip">
-                                                        <i class="fas fa-lightbulb"></i>
-                                                        <span>${transport.tips || transport.tip}</span>
-                                                    </div>
-                                                </div>
+                                    <div class="transport-card">
+                                        <div class="transport-header">
+                                            <div class="transport-icon">
+                                                <i class="fas fa-${getTransportIcon(transport.type)}"></i>
                                             </div>
+                                            <h4>${transport.type}</h4>
+                                        </div>
+                                        <div class="transport-info">
+                                            <div class="cost-info">
+                                                <i class="fas fa-rupee-sign"></i>
+                                                <span>${transport.cost}</span>
+                                            </div>
+                                            <p class="transport-desc">${transport.description}</p>
+                                            <div class="transport-tip">
+                                                <i class="fas fa-lightbulb"></i>
+                                                <span>${transport.tips || transport.tip}</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                         `).join('');
                                     } else if (itinerary.transportation && typeof itinerary.transportation === 'object') {
                                         // If it's an object, create cards from the object properties
@@ -6064,7 +6064,7 @@
                                                         <div class="transport-header">
                                                             <div class="transport-icon">
                                                                 <i class="fas fa-${getTransportIcon(type)}"></i>
-                                                            </div>
+                            </div>
                                                             <h4>${type === 'localTransport' ? 'Local Transport' : type === 'costs' ? 'Transport Costs' : 'Travel Tips'}</h4>
                                                         </div>
                                                         <div class="transport-info">
