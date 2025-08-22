@@ -220,7 +220,7 @@ function getBudgetBreakdown(duration, budget) {
     const base = baseCosts[budget] || baseCosts['mid'];
     const total = Object.values(base).reduce((sum, cost) => sum + cost, 0) * duration;
     
-            return {
+    return {
         accommodation: `₹${(base.accommodation * duration).toLocaleString()}`,
         food: `₹${(base.food * duration).toLocaleString()}`,
         transport: `₹${(base.transport * duration).toLocaleString()}`,

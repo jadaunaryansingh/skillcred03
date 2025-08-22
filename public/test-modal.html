@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modal - Travel Itinerary App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .modal-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        .modal-container h1 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        .btn:hover {
+            background: #5a6fd8;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .back-link {
+            margin-top: 1rem;
+        }
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-container">
+        <h1>🧪 Test Modal</h1>
+        
+        <div class="test-section">
+            <h3>API Health Check</h3>
+            <button class="btn" onclick="testHealth()">Test Health Endpoint</button>
+            <div id="healthResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Itinerary Generation</h3>
+            <button class="btn" onclick="testItinerary()">Test Itinerary API</button>
+            <div id="itineraryResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Activities Generation</h3>
+            <button class="btn" onclick="testActivities()">Test Activities API</button>
+            <div id="activitiesResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="back-link">
+            <a href="/">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        async function testHealth() {
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                const resultDiv = document.getElementById('healthResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<strong>Status:</strong> ${response.status}<br><strong>Response:</strong> ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                const resultDiv = document.getElementById('healthResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            }
+        }
+
+        async function testItinerary() {
+            try {
+                const response = await fetch('/api/generate-itinerary', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        destination: 'Mumbai',
+                        days: 2,
+                        interests: ['culture']
+                    })
+                });
+                const data = await response.json();
+                const resultDiv = document.getElementById('itineraryResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<strong>Status:</strong> ${response.status}<br><strong>Response:</strong> ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                const resultDiv = document.getElementById('itineraryResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            }
+        }
+
+        async function testActivities() {
+            try {
+                const response = await fetch('/api/generate-activities', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        destination: 'Mumbai',
+                        travelStyles: ['culture'],
+                        prompt: 'Generate cultural activities for Mumbai'
+                    })
+                });
+                const data = await response.json();
+                const resultDiv = document.getElementById('activitiesResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<strong>Status:</strong> ${response.status}<br><strong>Response:</strong> ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                const resultDiv = document.getElementById('activitiesResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
