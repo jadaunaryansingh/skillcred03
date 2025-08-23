@@ -18,7 +18,27 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
         }
         
-        /* All complex font declarations removed */
+        /* Block any incorrect font face declarations */
+        @font-face {
+            font-family: 'Inter';
+            src: local('Inter') !important;
+            font-display: block !important;
+        }
+        
+        /* Override any other Inter font declarations */
+        @font-face {
+            font-family: 'Inter';
+            font-weight: 400;
+            src: local('Inter Regular'), local('Inter-Regular'), local('Inter') !important;
+            font-display: swap !important;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-weight: 600;
+            src: local('Inter SemiBold'), local('Inter-SemiBold'), local('Inter') !important;
+            font-display: swap !important;
+        }
     </style>
     <style>
         /* ===== RESET & BASE STYLES ===== */
