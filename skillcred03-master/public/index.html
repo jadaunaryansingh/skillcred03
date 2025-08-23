@@ -6,9 +6,11 @@
     <title>🚀 Professional Travel Itinerary App v2.0.0</title>
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
     <style>
         /* ===== RESET & BASE STYLES ===== */
         * {
@@ -86,7 +88,7 @@
             --dark-border: #334155;
             
             /* Typography */
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
             
             /* Spacing */
             --spacing-xs: 0.25rem;
@@ -5988,28 +5990,65 @@
 
         async function loadReviewsFromAI() {
             try {
+                // Check if we're on Netlify (no backend)
+                if (window.location.hostname.includes('netlify.app')) {
+                    console.log('🌐 Running on Netlify - using fallback reviews');
+                    loadFallbackReviews();
+                    return;
+                }
+
                 const response = await fetch('/api/ai/reviews?count=5');
+                
+                // Check if response is valid JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    console.warn('⚠️ API returned non-JSON response, using fallback');
+                    loadFallbackReviews();
+                    return;
+                }
+                
                 const data = await response.json();
                 
                 if (data.success) {
                     reviews = data.reviews;
                     loadReviews();
+                } else {
+                    loadFallbackReviews();
                 }
             } catch (error) {
-                console.error('Failed to load AI reviews:', error);
-                // Fallback to default reviews
-                reviews = [
-                    {
-                        id: 1,
-                        name: 'David Jordan',
-                        type: 'Digital Nomad',
-                        rating: 5,
-                        text: 'Trip Planner AI saves time and stress by aiding travel planning, relieving indecision or uncertainty. It\'s like having a personal travel agent in your pocket!',
-                        date: '2024-01-15'
-                    }
-                ];
-                loadReviews();
+                console.warn('⚠️ Failed to load AI reviews, using fallback:', error.message);
+                loadFallbackReviews();
             }
+        }
+
+        function loadFallbackReviews() {
+            reviews = [
+                {
+                    id: 1,
+                    name: 'David Jordan',
+                    type: 'Digital Nomad',
+                    rating: 5,
+                    text: 'Trip Planner AI saves time and stress by aiding travel planning, relieving indecision or uncertainty. It\'s like having a personal travel agent in your pocket!',
+                    date: '2024-01-15'
+                },
+                {
+                    id: 2,
+                    name: 'Sarah Chen',
+                    type: 'Adventure Seeker',
+                    rating: 5,
+                    text: 'The AI suggestions are spot-on! Found amazing hidden gems I never would have discovered on my own.',
+                    date: '2024-01-20'
+                },
+                {
+                    id: 3,
+                    name: 'Marcus Rodriguez',
+                    type: 'Culture Enthusiast',
+                    rating: 5,
+                    text: 'Perfect for cultural trips. The AI understands local customs and suggests authentic experiences.',
+                    date: '2024-01-25'
+                }
+            ];
+            loadReviews();
         }
 
         function setupReviewFilters() {
@@ -6066,6 +6105,13 @@
                 // Call the backend API with proper LLM integration
                 console.log('🚀 Calling backend API for itinerary generation...');
                 
+                // Check if we're on Netlify (no backend)
+                if (window.location.hostname.includes('netlify.app')) {
+                    console.log('🌐 Running on Netlify - using local itinerary generation');
+                    generateLocalItinerary(destination, duration, travelStyles, budget);
+                    return;
+                }
+
                 const response = await fetch('http://localhost:5000/api/generate-itinerary', {
                     method: 'POST',
                     headers: {
@@ -6309,6 +6355,145 @@
             await new Promise(resolve => setTimeout(resolve, 2000));
             
             return createDetailedItinerary(destination, duration, travelStyle, budget);
+        }
+
+        function generateLocalItinerary(destination, duration, travelStyles, budget) {
+            // Remove existing results
+            const existingResults = document.getElementById('tripResults');
+            if (existingResults) {
+                existingResults.remove();
+            }
+
+            // Generate local itinerary
+            const itinerary = createLocalItinerary(destination, duration, travelStyles, budget);
+            
+            // Create results HTML
+            const resultsHTML = `
+                <div class="trip-results" id="tripResults">
+                    <div class="results-header">
+                        <h3>🎯 Your ${duration}-Day ${destination} Adventure</h3>
+                        <p>Local itinerary generation (Netlify Mode)</p>
+                    </div>
+                    
+                    <div class="trip-overview">
+                        <div class="overview-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h4>Destination</h4>
+                            <p>${destination}</p>
+                        </div>
+                        <div class="overview-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h4>Duration</h4>
+                            <p>${duration} Days</p>
+                        </div>
+                        <div class="overview-item">
+                            <i class="fas fa-heart"></i>
+                            <h4>Styles</h4>
+                            <p>${travelStyles.join(', ')}</p>
+                        </div>
+                        <div class="overview-item">
+                            <i class="fas fa-rupee-sign"></i>
+                            <h4>Budget</h4>
+                            <p>${getBudgetDisplay(budget)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-days">
+                        ${itinerary}
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-primary btn-large" onclick="downloadItinerary()">
+                            <i class="fas fa-download"></i>
+                            Download Itinerary
+                        </button>
+                        <button class="btn btn-secondary btn-large" onclick="shareItinerary()" style="margin-left: 1rem;">
+                            <i class="fas fa-share"></i>
+                            Share Trip
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Insert results after the search form
+            const tripSearch = document.getElementById('tripSearch');
+            tripSearch.insertAdjacentHTML('afterend', resultsHTML);
+            
+            // Scroll to results
+            document.getElementById('tripResults').scrollIntoView({ behavior: 'smooth' });
+            
+            showNotification('✅ Your personalized itinerary is ready! (Local Mode)', 'success');
+        }
+
+        function createLocalItinerary(destination, duration, travelStyles, budget) {
+            let itineraryHTML = '';
+            
+            for (let day = 1; day <= duration; day++) {
+                const activities = generateLocalActivities(destination, travelStyles, day);
+                itineraryHTML += `
+                    <div class="day-card">
+                        <div class="day-header">
+                            <h4>Day ${day}</h4>
+                            <span class="day-date">${getFutureDate(day)}</span>
+                        </div>
+                        <div class="day-activities">
+                            ${activities}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            return itineraryHTML;
+        }
+
+        function generateLocalActivities(destination, travelStyles, day) {
+            const activities = [];
+            const baseActivities = [
+                'Explore local attractions',
+                'Visit cultural sites',
+                'Enjoy local cuisine',
+                'Take scenic photos',
+                'Experience local culture'
+            ];
+            
+            // Add style-specific activities
+            travelStyles.forEach(style => {
+                switch(style) {
+                    case 'culture':
+                        activities.push('Visit museums and galleries', 'Attend cultural events', 'Explore historical sites');
+                        break;
+                    case 'food':
+                        activities.push('Try local restaurants', 'Visit food markets', 'Take cooking classes');
+                        break;
+                    case 'adventure':
+                        activities.push('Go hiking', 'Try adventure sports', 'Explore nature trails');
+                        break;
+                    case 'relaxation':
+                        activities.push('Visit spas', 'Enjoy scenic views', 'Take leisurely walks');
+                        break;
+                    case 'nature':
+                        activities.push('Visit parks', 'Go wildlife watching', 'Explore natural landscapes');
+                        break;
+                }
+            });
+            
+            // Mix base and style-specific activities
+            const allActivities = [...baseActivities, ...activities];
+            const selectedActivities = allActivities.slice(0, 5); // Max 5 activities per day
+            
+            return selectedActivities.map(activity => 
+                `<div class="activity-item"><i class="fas fa-check"></i> ${activity}</div>`
+            ).join('');
+        }
+
+        function getFutureDate(daysFromNow) {
+            const date = new Date();
+            date.setDate(date.getDate() + daysFromNow);
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                month: 'short', 
+                day: 'numeric' 
+            });
         }
 
         function generateTripItinerary(destination, duration, travelStyle, budget) {
@@ -8862,12 +9047,52 @@
             }
         });
 
+        // Check if running on Netlify
+        function isNetlify() {
+            return window.location.hostname.includes('netlify.app');
+        }
+
+        // Safe API call function
+        async function safeApiCall(url, options = {}) {
+            if (isNetlify()) {
+                console.log('🌐 Running on Netlify - API calls disabled');
+                return { success: false, message: 'Running on Netlify (no backend)' };
+            }
+
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.warn('⚠️ API call failed:', error.message);
+                return { success: false, error: error.message };
+            }
+        }
+
         // Unhandled promise rejection handler
         window.addEventListener('unhandledrejection', function(event) {
             console.warn('Unhandled promise rejection:', event.reason);
             // Don't show user-facing errors for extension-related issues
             if (!event.reason || !event.reason.toString().includes('content.js')) {
                 showNotification('⚠️ A connection error occurred. Please check your internet connection.', 'warning');
+            }
+        });
+
+        // Font loading error handler
+        document.fonts.ready.then(function() {
+            console.log('✅ All fonts loaded successfully');
+        }).catch(function(error) {
+            console.warn('⚠️ Some fonts failed to load, using system fallbacks:', error);
+        });
+
+        // Handle font loading errors gracefully
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if Inter font is available
+            if (!document.fonts.check('1em Inter')) {
+                console.log('🌐 Inter font not available, using system fonts');
+                document.documentElement.style.setProperty('--font-primary', '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif');
             }
         });
     </script>
