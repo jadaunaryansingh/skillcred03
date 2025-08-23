@@ -1,205 +1,502 @@
 /**
- * Trip Planner AI - Itinerary Generation Functions
- * This file contains all the helper functions for creating detailed travel itineraries
+ * Trip Planner AI - Dynamic Itinerary Generation Functions
+ * This file contains intelligent functions for creating dynamic travel itineraries
  */
 
-// Enhanced destination activities database
-const enhancedActivitiesDb = {
-    'Mumbai': {
-        culture: {
-            morning: [
-                'Gateway of India (Apollo Bunder, Mumbai) - FREE entry | Travel: ₹50-100 taxi from city center | Explore the iconic arch monument built in 1924, visit nearby Taj Mahal Palace Hotel (₹500 for heritage tour), walk around Colaba area',
-                'Elephanta Caves (Elephanta Island) - Entry: ₹40 (Indians), ₹600 (Foreigners) | Ferry: ₹150 return from Gateway of India | UNESCO World Heritage rock-cut cave temples from 5th-8th century dedicated to Lord Shiva',
-                'Chhatrapati Shivaji Maharaj Vastu Sangrahalaya (Fort District) - Entry: ₹70 (Indians), ₹500 (Foreigners) | Travel: ₹30-50 local train to CST | Premier museum with Indo-Saracenic architecture, ancient artifacts collection'
-            ],
-            afternoon: [
-                'Colaba Causeway Market (Colaba) - FREE entry | Travel: ₹40 local train to Churchgate | Shopping for jewelry, handicrafts, vintage items | Budget: ₹500-2000 for shopping',
-                'Crawford Market (D.N. Road, Fort) - Entry: ₹20 | Travel: ₹30 local train to CST | Historic wholesale market built in 1869, fresh fruits, spices, pets section',
-                'Chhatrapati Shivaji Terminus (CST Station) - FREE entry | UNESCO World Heritage Victorian Gothic railway station built in 1887 | Heritage walk around Fort district architecture'
-            ],
-            evening: [
-                'Marine Drive (Netaji Subhash Chandra Bose Road) - FREE | Travel: ₹30-50 local train to Churchgate | 3.6 km promenade, sunset views, street food costs ₹100-300',
-                'Hanging Gardens (Malabar Hill) - Entry: ₹5 | Travel: ₹80-120 taxi from city center | Terraced gardens with city views, visit nearby Kamala Nehru Park (₹5 entry)',
-                'Juhu Beach (Juhu) - FREE | Travel: ₹40 local train to Vile Parle then ₹30 auto | Street food paradise: bhel puri ₹30, pav bhaji ₹50, kulfi ₹25'
-            ]
-        },
-        food: {
-            morning: [
-                'Mohammed Ali Road (Near Minara Masjid) - Travel: ₹30 local train to Mumbai Central | Famous for: Seekh kebab ₹80, roomali roti ₹25, mutton biryani ₹180 | Best time: 6-10 AM',
-                'Kyani & Co. Cafe (Dhobi Talao, Marine Lines) - Travel: ₹30 local train to Marine Lines | Irani cafe since 1904: bun maska ₹25, Irani chai ₹15, mawa cake ₹35',
-                'Thattu Kada (Matunga) - Travel: ₹30 local train to Matunga | South Indian breakfast: dosa ₹60, idli ₹40, filter coffee ₹25 | Authentic Kerala cuisine'
-            ],
-            afternoon: [
-                'Leopold Cafe (Colaba Causeway) - Travel: ₹40 local train to Churchgate | Historic cafe since 1871: continental dishes ₹300-600, beer ₹200, pizza ₹400',
-                'Britannia & Co. (Ballard Estate, Fort) - Travel: ₹30 local train to CST | Parsi cuisine: berry pulao ₹180, dhansak ₹200, caramel custard ₹80 | Established 1923',
-                'Mahesh Lunch Home (Fort Branch) - Travel: ₹30 local train to CST | Seafood specialist: butter pepper garlic crab ₹800, koliwada prawns ₹400, fish curry rice ₹250'
-            ],
-            evening: [
-                'Trishna Restaurant (Fort) - Travel: ₹30 local train to CST | Fine dining: tasting menu ₹2500-4000, wine pairing +₹1500 | Michelin recommended, book in advance',
-                'Bademiya (Colaba) - Travel: ₹40 local train to Churchgate | Street food institution: seekh kebabs ₹100, roomali roti ₹30, chicken tikka ₹150 | Open till 4 AM',
-                'Carter Road Social (Bandra West) - Travel: ₹40 local train to Bandra | Modern dining: small plates ₹200-400, cocktails ₹350-500, main course ₹500-800'
-            ]
-        }
-    },
-    'Delhi': {
-        culture: {
-            morning: [
-                'Red Fort (Lal Qila, Old Delhi) - Entry: ₹35 (Indians), ₹550 (Foreigners) | Travel: ₹20 metro to Lal Qila station | Audio guide ₹100 | Mughal architecture, museums inside',
-                'Lotus Temple (Kalkaji) - FREE entry | Travel: ₹30 metro to Kalkaji Mandir | No photography inside | Bahá\'í House of Worship, meditation sessions',
-                'Akshardham Temple (Noida Mor) - Entry: FREE, exhibitions ₹170 | Travel: ₹40 metro to Akshardham | Water show ₹80, boat ride ₹85 | No phones/cameras allowed'
-            ],
-            afternoon: [
-                'Qutub Minar (Mehrauli) - Entry: ₹35 (Indians), ₹550 (Foreigners) | Travel: ₹30 metro to Qutub Minar | UNESCO World Heritage, 73m tall minaret from 1193',
-                'Humayun\'s Tomb (Nizamuddin) - Entry: ₹35 (Indians), ₹550 (Foreigners) | Travel: ₹25 metro to JLN Stadium + ₹50 auto | Mughal garden tomb, Isa Khan\'s tomb nearby',
-                'National Museum (Janpath) - Entry: ₹20 (Indians), ₹650 (Foreigners) | Travel: ₹20 metro to Central Secretariat | Audio guide ₹200 | 5000 years of Indian heritage'
-            ],
-            evening: [
-                'India Gate (Rajpath) - FREE | Travel: ₹20 metro to Central Secretariat | War memorial, evening lights, street food ₹50-150, boating nearby ₹100',
-                'Rashtrapati Bhavan (Raisina Hill) - Museum entry: ₹50 | Travel: ₹20 metro to Central Secretariat | Mughal Gardens (seasonal), guided tours ₹25',
-                'Chandni Chowk (Old Delhi) - FREE walking | Travel: ₹20 metro to Chandni Chowk | Heritage walk, Jama Masjid ₹50 for tower, rickshaw rides ₹100'
-            ]
-        }
-    }
-};
+const axios = require('axios');
 
-// Helper functions for itinerary generation
-function getDestinationActivities(destination, travelStyles) {
-    // This function is now handled by AI in ai-activities.js
-    // Keeping this as fallback
-    const activities = enhancedActivitiesDb[destination];
-    if (activities && activities[travelStyles[0]]) {
-        return activities[travelStyles[0]];
+// Dynamic activity generation based on destination type and travel style
+function generateDynamicActivities(destination, travelStyles, timeOfDay) {
+    const activities = [];
+    
+    // Analyze destination type (city, beach, mountain, etc.)
+    const destinationType = analyzeDestinationType(destination);
+    
+    // Generate activities based on destination type and travel style
+    if (destinationType === 'city') {
+        if (travelStyles.includes('culture')) {
+            activities.push(...generateCulturalActivities(destination, timeOfDay));
+        }
+        if (travelStyles.includes('food')) {
+            activities.push(...generateFoodActivities(destination, timeOfDay));
+        }
+        if (travelStyles.includes('adventure')) {
+            activities.push(...generateAdventureActivities(destination, timeOfDay));
+        }
+        if (travelStyles.includes('relaxation')) {
+            activities.push(...generateRelaxationActivities(destination, timeOfDay));
+        }
+    } else if (destinationType === 'beach') {
+        if (travelStyles.includes('adventure')) {
+            activities.push(...generateBeachAdventureActivities(timeOfDay));
+        }
+        if (travelStyles.includes('relaxation')) {
+            activities.push(...generateBeachRelaxationActivities(timeOfDay));
+        }
+        if (travelStyles.includes('culture')) {
+            activities.push(...generateBeachCulturalActivities(destination, timeOfDay));
+        }
+    } else if (destinationType === 'mountain') {
+        if (travelStyles.includes('adventure')) {
+            activities.push(...generateMountainAdventureActivities(timeOfDay));
+        }
+        if (travelStyles.includes('relaxation')) {
+            activities.push(...generateMountainRelaxationActivities(timeOfDay));
+        }
+        if (travelStyles.includes('culture')) {
+            activities.push(...generateMountainCulturalActivities(destination, timeOfDay));
+        }
     }
     
-    // Fallback activities
-    return {
+    // If no specific activities found, generate generic ones
+    if (activities.length === 0) {
+        activities.push(...generateGenericActivities(destination, travelStyles, timeOfDay));
+    }
+    
+    return activities;
+}
+
+function analyzeDestinationType(destination) {
+    const destinationLower = destination.toLowerCase();
+    
+    if (destinationLower.includes('beach') || destinationLower.includes('island') || 
+        destinationLower.includes('coast') || destinationLower.includes('sea')) {
+        return 'beach';
+    } else if (destinationLower.includes('mountain') || destinationLower.includes('hill') || 
+               destinationLower.includes('peak') || destinationLower.includes('valley')) {
+        return 'mountain';
+    } else if (destinationLower.includes('forest') || destinationLower.includes('jungle') || 
+               destinationLower.includes('park') || destinationLower.includes('wildlife')) {
+        return 'nature';
+    } else if (destinationLower.includes('desert') || destinationLower.includes('sahara')) {
+        return 'desert';
+    } else {
+        return 'city'; // Default to city
+    }
+}
+
+function generateCulturalActivities(destination, timeOfDay) {
+    const activities = {
+            morning: [
+            `Visit ${destination}'s most iconic historical landmark`,
+            `Explore the main museum or cultural center`,
+            `Take a guided walking tour of the historic district`,
+            `Visit a famous temple, church, or religious site`
+            ],
+            afternoon: [
+            `Explore local markets and traditional shopping areas`,
+            `Visit art galleries and cultural exhibitions`,
+            `Experience local crafts and traditional workshops`,
+            `Learn about local history at heritage sites`
+            ],
+            evening: [
+            `Attend a cultural performance or traditional show`,
+            `Visit illuminated monuments and landmarks`,
+            `Experience local nightlife and entertainment`,
+            `Enjoy traditional dinner with local cuisine`
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateFoodActivities(destination, timeOfDay) {
+    const activities = {
+            morning: [
+            `Start your day with local breakfast specialties`,
+            `Visit a famous local cafe or breakfast spot`,
+            `Explore morning food markets and street food`,
+            `Take a breakfast food tour of ${destination}`
+            ],
+            afternoon: [
+            `Try traditional lunch at a local restaurant`,
+            `Visit food markets and sample local delicacies`,
+            `Take a cooking class to learn local recipes`,
+            `Explore different neighborhoods for diverse cuisines`
+            ],
+            evening: [
+            `Enjoy fine dining at a renowned restaurant`,
+            `Experience street food culture in the evening`,
+            `Visit food festivals or night markets`,
+            `Take a food and wine pairing experience`
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateAdventureActivities(destination, timeOfDay) {
+    const activities = {
+            morning: [
+            `Start with an early morning adventure activity`,
+            `Go hiking or trekking in nearby natural areas`,
+            `Try water sports or outdoor activities`,
+            `Explore off-the-beaten-path locations`
+            ],
+            afternoon: [
+            `Continue with adrenaline-pumping activities`,
+            `Try extreme sports or adventure tours`,
+            `Explore caves, canyons, or natural formations`,
+            `Go on a wildlife safari or nature expedition`
+            ],
+            evening: [
+            `Experience night adventure activities`,
+            `Go stargazing or night photography`,
+            `Try evening adventure sports`,
+            `Explore the destination after dark`
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateRelaxationActivities(destination, timeOfDay) {
+    const activities = {
         morning: [
-            `Explore ${destination}'s main attractions and landmarks`,
-            `Visit top-rated museums and cultural sites`,
-            `Walking tour of historic districts`
+            `Start with a peaceful morning meditation`,
+            `Enjoy a relaxing spa or wellness treatment`,
+            `Take a gentle morning walk in nature`,
+            `Practice yoga or tai chi in serene surroundings`
         ],
         afternoon: [
-            `Experience local culture and traditions`,
-            `Shopping at local markets and boutiques`,
-            `Visit religious and spiritual sites`
+            `Continue with relaxation and wellness activities`,
+            `Visit peaceful gardens or meditation centers`,
+            `Enjoy a leisurely lunch in a tranquil setting`,
+            `Take a slow-paced cultural experience`
         ],
         evening: [
-            `Sunset viewing at scenic locations`,
-            `Traditional dinner with local cuisine`,
-            `Evening entertainment and nightlife`
+            `End the day with evening relaxation`,
+            `Enjoy sunset viewing at peaceful locations`,
+            `Experience evening spa or wellness treatments`,
+            `Have a quiet dinner in a serene atmosphere`
         ]
     };
-}
-
-function getDestinationRestaurants(destination, budget) {
-    const restaurants = {
-        'Mumbai': {
-            breakfast: ['Kyani & Co. Cafe', 'Thattu Kada', 'Mohammed Ali Road'],
-            lunch: ['Leopold Cafe', 'Britannia & Co.', 'Mahesh Lunch Home'],
-            dinner: ['Trishna Restaurant', 'Bademiya', 'Carter Road Social']
-        },
-        'Delhi': {
-            breakfast: ['Paranthe Wali Gali', 'Karim\'s Restaurant', 'Giani Di Hatti'],
-            lunch: ['Khan Market', 'Dilli Haat', 'Al Jawahar'],
-            dinner: ['Connaught Place Food Court', 'Moti Mahal', 'Social']
-        }
-    };
     
-    return restaurants[destination] || {
-        breakfast: ['Local Cafe', 'Street Food Stall', 'Hotel Restaurant'],
-        lunch: ['Traditional Restaurant', 'Local Market', 'Cafe'],
-        dinner: ['Fine Dining', 'Local Eatery', 'Street Food']
-    };
+    return activities[timeOfDay] || activities.morning;
 }
 
-function getActivityCost(budget, timeOfDay) {
-    const costRanges = {
-        'budget': { morning: '₹200-500', afternoon: '₹300-800', evening: '₹400-1000' },
-        'mid': { morning: '₹500-1000', afternoon: '₹800-1500', evening: '₹1000-2000' },
-        'luxury': { morning: '₹1000-2500', afternoon: '₹1500-3000', evening: '₹2000-4000' },
-        'premium': { morning: '₹2500-5000', afternoon: '₹3000-6000', evening: '₹4000-8000' }
-    };
-    
-    return costRanges[budget]?.[timeOfDay] || '₹500-1500';
-}
-
-function getThemeForDay(destination, dayNumber, travelStyle) {
-    const themes = {
-        'Mumbai': ['Heritage & Culture', 'Food & Local Life', 'Modern Mumbai'],
-        'Delhi': ['Historical Journey', 'Cultural Experience', 'Modern Delhi'],
-        'Goa': ['Beach & Heritage', 'Adventure & Nature', 'Relaxation & Culture'],
-        'Jaipur': ['Royal Heritage', 'Cultural Experience', 'Shopping & Food'],
-        'Varanasi': ['Spiritual Journey', 'Cultural Immersion', 'Hidden Gems'],
-        'Kerala': ['Nature & Backwaters', 'Cultural Heritage', 'Wellness & Relaxation']
-    };
-    
-    const destinationThemes = themes[destination] || ['Cultural Experience', 'Local Exploration', 'Adventure & Discovery'];
-    return destinationThemes[(dayNumber - 1) % destinationThemes.length];
-}
-
-function getRestaurantRecommendations(destination, budget) {
-    const recommendations = {
-        'Mumbai': {
-            budget: ['Street Food Stalls', 'Local Cafes', 'Budget Restaurants'],
-            mid: ['Leopold Cafe', 'Britannia & Co.', 'Mahesh Lunch Home'],
-            luxury: ['Trishna Restaurant', 'The Taj Mahal Palace', 'Four Seasons'],
-            premium: ['Fine Dining Restaurants', 'Celebrity Chef Restaurants', 'Exclusive Clubs']
-        }
-    };
-    
-    return recommendations[destination]?.[budget] || ['Local Restaurants', 'Cafes', 'Street Food'];
-}
-
-function getAccommodationSuggestions(destination, budget) {
-    const suggestions = {
-        'Mumbai': {
-            budget: ['Hostels', 'Budget Hotels', 'Guest Houses'],
-            mid: ['3-Star Hotels', 'Boutique Hotels', 'Service Apartments'],
-            luxury: ['5-Star Hotels', 'Luxury Resorts', 'Heritage Hotels'],
-            premium: ['Palace Hotels', 'Exclusive Resorts', 'Private Villas']
-        }
-    };
-    
-    return suggestions[destination]?.[budget] || ['Hotels', 'Guest Houses', 'Resorts'];
-}
-
-function getTransportationGuide(destination, budget) {
-    const transport = {
-        'Mumbai': {
-            budget: ['Local Trains', 'Buses', 'Auto-rickshaws'],
-            mid: ['Metro', 'Taxis', 'Ride-sharing'],
-            luxury: ['Private Cars', 'Luxury Transfers', 'Helicopter Tours'],
-            premium: ['Private Jets', 'Luxury Yachts', 'VIP Services']
-        }
-    };
-    
-    return transport[destination]?.[budget] || ['Public Transport', 'Taxis', 'Walking'];
-}
-
-function getLocalTips(destination) {
-    const tips = {
-        'Mumbai': [
-            'Use local trains during off-peak hours (10 AM - 4 PM)',
-            'Bargain at street markets but be respectful',
-            'Try street food from busy stalls for freshness',
-            'Book popular restaurants in advance',
-            'Use metro for quick city travel',
-            'Carry water and comfortable shoes',
-            'Learn basic Marathi phrases for better experience'
+function generateBeachAdventureActivities(timeOfDay) {
+    const activities = {
+        morning: [
+            'Early morning beach jogging or yoga',
+            'Sunrise kayaking or paddleboarding',
+            'Beach volleyball or frisbee games',
+            'Snorkeling in calm morning waters'
         ],
-        'Delhi': [
-            'Use metro to avoid traffic congestion',
-            'Bargain at markets but stay polite',
-            'Try street food from popular stalls',
-            'Book monuments online to skip queues',
-            'Use auto-rickshaws with meters',
-            'Carry water and wear comfortable clothes',
-            'Learn basic Hindi phrases for better experience'
+        afternoon: [
+            'Jet skiing or parasailing adventures',
+            'Scuba diving or underwater exploration',
+            'Beach rock climbing or bouldering',
+            'Water sports competitions and games'
+        ],
+        evening: [
+            'Sunset sailing or boat tours',
+            'Evening beach bonfire activities',
+            'Night fishing or crabbing',
+            'Beach camping under the stars'
         ]
     };
     
-    return tips[destination] || [
-        'Research local customs and traditions',
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateBeachRelaxationActivities(timeOfDay) {
+    const activities = {
+        morning: [
+            'Peaceful sunrise meditation on the beach',
+            'Gentle beach walking and shell collecting',
+            'Morning beach yoga or tai chi',
+            'Quiet beach reading and relaxation'
+        ],
+        afternoon: [
+            'Beachside massage and spa treatments',
+            'Lazy afternoon beach lounging',
+            'Beach picnic with local delicacies',
+            'Gentle swimming and floating'
+        ],
+        evening: [
+            'Romantic sunset beach dinner',
+            'Evening beach meditation and reflection',
+            'Stargazing from the beach',
+            'Peaceful beachside accommodation'
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateMountainAdventureActivities(timeOfDay) {
+    const activities = {
+        morning: [
+            'Early morning mountain hiking',
+            'Sunrise peak climbing',
+            'Mountain biking on scenic trails',
+            'Rock climbing and bouldering'
+        ],
+        afternoon: [
+            'Advanced mountain trekking',
+            'Mountain rappelling and abseiling',
+            'Mountain photography and exploration',
+            'Wildlife spotting and nature trails'
+        ],
+        evening: [
+            'Sunset mountain viewing',
+            'Night mountain camping',
+            'Evening mountain stargazing',
+            'Mountain bonfire and storytelling'
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateMountainRelaxationActivities(timeOfDay) {
+    const activities = {
+        morning: [
+            'Peaceful mountain sunrise meditation',
+            'Gentle mountain hiking and nature walk',
+            'Morning mountain yoga or tai chi',
+            'Quiet mountain reading and relaxation'
+        ],
+        afternoon: [
+            'Mountain side massage and spa treatments',
+            'Lazy mountain lunch in a serene spot',
+            'Mountain picnic with local delicacies',
+            'Gentle mountain swimming and floating'
+        ],
+        evening: [
+            'Romantic mountain sunset dinner',
+            'Evening mountain meditation and reflection',
+            'Stargazing from the mountain',
+            'Peaceful mountainside accommodation'
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateMountainCulturalActivities(destination, timeOfDay) {
+    const activities = {
+        morning: [
+            `Visit ${destination}'s most iconic mountain temple`,
+            `Explore the main mountain monastery`,
+            `Take a guided walking tour of the mountain trails`,
+            `Visit a famous mountain shrine or spiritual site`
+        ],
+        afternoon: [
+            `Experience local mountain crafts and traditions`,
+            `Visit art galleries and cultural exhibitions`,
+            `Learn about mountain history and folklore`,
+            `Visit local mountain markets`
+        ],
+        evening: [
+            `Attend a cultural performance or traditional show`,
+            `Visit illuminated mountain landmarks`,
+            `Experience local mountain nightlife and entertainment`,
+            `Enjoy traditional mountain dinner with local cuisine`
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateBeachCulturalActivities(destination, timeOfDay) {
+    const activities = {
+        morning: [
+            `Visit ${destination}'s most iconic beach temple`,
+            `Explore the main beach monastery`,
+            `Take a guided walking tour of the beach trails`,
+            `Visit a famous beach shrine or spiritual site`
+        ],
+        afternoon: [
+            `Experience local beach crafts and traditions`,
+            `Visit art galleries and cultural exhibitions`,
+            `Learn about beach history and folklore`,
+            `Visit local beach markets`
+        ],
+        evening: [
+            `Attend a cultural performance or traditional show`,
+            `Visit illuminated beach landmarks`,
+            `Experience local beach nightlife and entertainment`,
+            `Enjoy traditional beach dinner with local cuisine`
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+function generateGenericActivities(destination, travelStyles, timeOfDay) {
+    const activities = {
+        morning: [
+            `Start your day exploring ${destination}'s main attractions`,
+            `Visit the most popular landmarks and monuments`,
+            `Take a morning tour of the city center`,
+            `Experience local morning culture and traditions`
+        ],
+        afternoon: [
+            `Continue exploring ${destination}'s diverse offerings`,
+            `Visit local markets and shopping areas`,
+            `Experience local cuisine and dining culture`,
+            `Learn about the destination's history and heritage`
+        ],
+        evening: [
+            `Enjoy ${destination}'s evening atmosphere`,
+            `Visit illuminated landmarks and attractions`,
+            `Experience local nightlife and entertainment`,
+            `End your day with traditional local experiences`
+        ]
+    };
+    
+    return activities[timeOfDay] || activities.morning;
+}
+
+// Dynamic restaurant generation
+function generateDynamicRestaurants(destination, budget, mealType) {
+    const restaurants = {
+        breakfast: [
+            `Local breakfast cafe in ${destination}`,
+            `Traditional morning food spot`,
+            `Popular breakfast restaurant`,
+            `Street food breakfast stall`
+        ],
+        lunch: [
+            `Traditional local restaurant`,
+            `Popular lunch destination`,
+            `Local food market`,
+            `Cultural dining experience`
+        ],
+        dinner: [
+            `Fine dining restaurant`,
+            `Traditional evening eatery`,
+            `Local night food market`,
+            `Cultural dinner experience`
+        ]
+    };
+    
+    // Adjust based on budget
+    if (budget === 'luxury' || budget === 'premium') {
+        restaurants[mealType] = restaurants[mealType].map(r => `${r} (Premium)`);
+    } else if (budget === 'budget') {
+        restaurants[mealType] = restaurants[mealType].map(r => `${r} (Budget-friendly)`);
+    }
+    
+    return restaurants[mealType] || restaurants.breakfast;
+}
+
+// Dynamic accommodation suggestions
+function generateDynamicAccommodation(destination, budget) {
+    const accommodations = {
+        budget: [
+            'Hostels and budget hotels',
+            'Guest houses and homestays',
+            'Budget-friendly accommodations',
+            'Local family-run lodgings'
+        ],
+        mid: [
+            '3-star hotels and resorts',
+            'Boutique hotels and inns',
+            'Service apartments',
+            'Comfortable mid-range options'
+        ],
+        luxury: [
+            '5-star luxury hotels',
+            'Premium resorts and spas',
+            'Exclusive boutique properties',
+            'High-end accommodation experiences'
+        ],
+        premium: [
+            'Palace hotels and heritage properties',
+            'Exclusive luxury resorts',
+            'Private villas and estates',
+            'Ultra-premium accommodation'
+        ]
+    };
+    
+    return accommodations[budget] || accommodations.mid;
+}
+
+// Dynamic transportation guide
+function generateDynamicTransport(destination, budget) {
+    const transport = {
+        budget: [
+            'Public transportation (buses, trains)',
+            'Local shared transport options',
+            'Walking and cycling',
+            'Budget-friendly taxi services'
+        ],
+        mid: [
+            'Metro and light rail systems',
+            'Regular taxi services',
+            'Ride-sharing applications',
+            'Comfortable public transport'
+        ],
+        luxury: [
+            'Private car services',
+            'Luxury transportation options',
+            'Helicopter tours and transfers',
+            'Premium travel experiences'
+        ],
+        premium: [
+            'Exclusive private transport',
+            'VIP transportation services',
+            'Luxury yacht and private jet options',
+            'Ultra-premium travel services'
+        ]
+    };
+    
+    return transport[budget] || transport.mid;
+}
+
+// Dynamic cost calculation
+function calculateDynamicCost(days, budget, destination) {
+    const baseCosts = {
+        budget: { accommodation: 1500, food: 800, transport: 300, activities: 500, misc: 200 },
+        mid: { accommodation: 3500, food: 1500, transport: 600, activities: 1000, misc: 400 },
+        luxury: { accommodation: 8000, food: 3000, transport: 1200, activities: 2000, misc: 800 },
+        premium: { accommodation: 15000, food: 5000, transport: 2000, activities: 4000, misc: 1500 }
+    };
+    
+    // Adjust costs based on destination type
+    const destinationType = analyzeDestinationType(destination);
+    let multiplier = 1;
+    
+    if (destinationType === 'beach') multiplier = 1.2;
+    else if (destinationType === 'mountain') multiplier = 1.3;
+    else if (destinationType === 'nature') multiplier = 1.1;
+    
+    const base = baseCosts[budget] || baseCosts.mid;
+    const total = Object.values(base).reduce((sum, cost) => sum + cost, 0) * days * multiplier;
+    
+    return `₹${Math.round(total).toLocaleString()}`;
+}
+
+// Dynamic highlights generation
+function generateDynamicHighlights(destination, travelStyles) {
+    const highlights = [];
+    
+    if (travelStyles.includes('culture')) {
+        highlights.push('Cultural Heritage Sites', 'Historical Landmarks', 'Local Traditions');
+    }
+    if (travelStyles.includes('food')) {
+        highlights.push('Local Cuisine', 'Food Markets', 'Traditional Dishes');
+    }
+    if (travelStyles.includes('adventure')) {
+        highlights.push('Adventure Activities', 'Outdoor Experiences', 'Thrilling Activities');
+    }
+    if (travelStyles.includes('relaxation')) {
+        highlights.push('Wellness Experiences', 'Peaceful Locations', 'Relaxation Activities');
+    }
+    
+    // Add destination-specific highlights
+    highlights.push(`${destination}'s Unique Charm`, 'Local Experiences', 'Memorable Moments');
+    
+    return highlights.slice(0, 5); // Return top 5 highlights
+}
+
+// Dynamic local tips generation
+function generateDynamicTips(destination, travelStyles) {
+    const tips = [
+        `Research local customs and traditions in ${destination}`,
         'Learn basic local language phrases',
         'Carry local currency and small change',
         'Use public transport when possible',
@@ -207,69 +504,46 @@ function getLocalTips(destination) {
         'Respect local culture and traditions',
         'Keep emergency contacts handy'
     ];
-}
-
-function getBudgetBreakdown(duration, budget) {
-    const baseCosts = {
-        'budget': { accommodation: 1500, food: 800, transport: 300, activities: 500, misc: 200 },
-        'mid': { accommodation: 3500, food: 1500, transport: 600, activities: 1000, misc: 400 },
-        'luxury': { accommodation: 8000, food: 3000, transport: 1200, activities: 2000, misc: 800 },
-        'premium': { accommodation: 15000, food: 5000, transport: 2000, activities: 4000, misc: 1500 }
-    };
     
-    const base = baseCosts[budget] || baseCosts['mid'];
-    const total = Object.values(base).reduce((sum, cost) => sum + cost, 0) * duration;
+    // Add style-specific tips
+    if (travelStyles.includes('adventure')) {
+        tips.push('Check weather conditions before outdoor activities', 'Carry proper safety equipment');
+    }
+    if (travelStyles.includes('food')) {
+        tips.push('Try food from busy stalls for freshness', 'Ask locals for restaurant recommendations');
+    }
+    if (travelStyles.includes('culture')) {
+        tips.push('Dress appropriately for religious sites', 'Book popular attractions in advance');
+    }
     
-    return {
-        accommodation: `₹${(base.accommodation * duration).toLocaleString()}`,
-        food: `₹${(base.food * duration).toLocaleString()}`,
-        transport: `₹${(base.transport * duration).toLocaleString()}`,
-        activities: `₹${(base.activities * duration).toLocaleString()}`,
-        misc: `₹${(base.misc * duration).toLocaleString()}`,
-        total: `₹${total.toLocaleString()}`
-    };
+    return tips.slice(0, 8); // Return top 8 tips
 }
 
-function calculateTotalCost(duration, budget) {
-    const breakdown = getBudgetBreakdown(duration, budget);
-    return breakdown.total;
-}
-
-function getDestinationHighlights(destination) {
-    const highlights = {
-        'Mumbai': ['Gateway of India', 'Bollywood Culture', 'Street Food', 'Marine Drive'],
-        'Delhi': ['Red Fort', 'India Gate', 'Qutub Minar', 'Chandni Chowk'],
-        'Goa': ['Pristine Beaches', 'Portuguese Heritage', 'Water Sports', 'Seafood'],
-        'Jaipur': ['Amber Fort', 'City Palace', 'Hawa Mahal', 'Local Markets'],
-        'Varanasi': ['Ganga Aarti', 'Kashi Vishwanath Temple', 'Ghats', 'Spiritual Experience'],
-        'Kerala': ['Backwaters', 'Tea Gardens', 'Ayurveda', 'Beaches']
-    };
+function generateLocalTips(destination, travelStyles) {
+    const tips = [
+        'Start early to avoid crowds',
+        'Take breaks and stay hydrated',
+        'Experience local nightlife safely',
+        'Ask locals for hidden gems',
+        'Keep your valuables secure',
+        'Follow local customs and dress codes',
+        'Use local transportation for authentic experience',
+        'Try street food from busy stalls'
+    ];
     
-    return highlights[destination] || ['Iconic Landmarks', 'Local Culture', 'Amazing Food', 'Unique Experiences'];
+    // Add destination-specific tips
+    if (destination.toLowerCase().includes('mumbai')) {
+        tips.push('Use local trains during off-peak hours', 'Try street food from Juhu Beach');
+    } else if (destination.toLowerCase().includes('delhi')) {
+        tips.push('Book popular attractions in advance', 'Use metro for easy navigation');
+    } else if (destination.toLowerCase().includes('goa')) {
+        tips.push('Rent a scooter for beach hopping', 'Try fresh seafood from local markets');
+    }
+    
+    return tips;
 }
 
-// Export all functions
-module.exports = {
-    getDestinationActivities,
-    getDestinationRestaurants,
-    getActivityCost,
-    getThemeForDay,
-    getRestaurantRecommendations,
-    getAccommodationSuggestions,
-    getTransportationGuide,
-    getLocalTips,
-    getBudgetBreakdown,
-    calculateTotalCost,
-    getDestinationHighlights,
-    enhancedActivitiesDb,
-    // Add missing functions that server.js needs
-    generateItinerary,
-    searchPexelsImage,
-    geocodeLocation,
-    calculateDistance
-};
-
-// Add missing functions that server.js is trying to import
+// Main itinerary generation function
 async function generateItinerary(destination, days, interests) {
     try {
         console.log(`Generating ${days}-day itinerary for ${destination} with interests: ${interests.join(', ')}`);
@@ -280,41 +554,88 @@ async function generateItinerary(destination, days, interests) {
             interests,
             dailyPlans: [],
             totalCost: '₹0',
-            highlights: getDestinationHighlights(destination),
-            localTips: getLocalTips(destination)
+            highlights: generateDynamicHighlights(destination, interests),
+            localTips: generateDynamicTips(destination, interests)
         };
 
-        // Generate daily plans
+        // Generate daily plans dynamically
         for (let day = 1; day <= days; day++) {
-            const theme = getThemeForDay(destination, day, interests[0] || 'culture');
-            const activities = getDestinationActivities(destination, interests);
-            const restaurants = getDestinationRestaurants(destination, 'mid');
+            const theme = generateDynamicTheme(destination, day, interests);
             
+            // Generate structured daily plan that frontend expects
             const dailyPlan = {
                 day,
                 theme,
-                activities: {
-                    morning: activities.morning || [],
-                    afternoon: activities.afternoon || [],
-                    evening: activities.evening || []
+                morning: {
+                    time: '9:00 AM - 12:00 PM',
+                    activity: generateDynamicActivities(destination, interests, 'morning')[0] || 'Explore local attractions',
+                    description: generateDynamicActivities(destination, interests, 'morning')[1] || 'Start your day with local exploration',
+                    cost: '₹200-500',
+                    tips: generateLocalTips(destination, interests)[0] || 'Start early to avoid crowds',
+                    image: {
+                        url: `https://images.pexels.com/photos/placeholder/morning-${day}.jpg`,
+                        alt: 'Morning activity',
+                        photographer: 'Pexels'
+                    }
+                },
+                afternoon: {
+                    time: '1:00 PM - 5:00 PM',
+                    activity: generateDynamicActivities(destination, interests, 'afternoon')[0] || 'Cultural experience',
+                    description: generateDynamicActivities(destination, interests, 'afternoon')[1] || 'Immerse yourself in local culture',
+                    cost: '₹300-800',
+                    tips: generateLocalTips(destination, interests)[1] || 'Take breaks and stay hydrated',
+                    image: {
+                        url: `https://images.pexels.com/photos/placeholder/afternoon-${day}.jpg`,
+                        alt: 'Afternoon activity',
+                        photographer: 'Pexels'
+                    }
+                },
+                evening: {
+                    time: '6:00 PM - 9:00 PM',
+                    activity: generateDynamicActivities(destination, interests, 'evening')[0] || 'Evening entertainment',
+                    description: generateDynamicActivities(destination, interests, 'evening')[1] || 'Enjoy local evening activities',
+                    cost: '₹400-1000',
+                    tips: generateLocalTips(destination, interests)[2] || 'Experience local nightlife safely',
+                    image: {
+                        url: `https://images.pexels.com/photos/placeholder/evening-${day}.jpg`,
+                        alt: 'Evening activity',
+                        photographer: 'Pexels'
+                    }
                 },
                 restaurants: {
-                    breakfast: restaurants.breakfast || [],
-                    lunch: restaurants.lunch || [],
-                    dinner: restaurants.dinner || []
+                    breakfast: generateDynamicRestaurants(destination, 'mid', 'breakfast'),
+                    lunch: generateDynamicRestaurants(destination, 'mid', 'lunch'),
+                    dinner: generateDynamicRestaurants(destination, 'mid', 'dinner')
                 },
-                accommodation: getAccommodationSuggestions(destination, 'mid'),
-                transport: getTransportationGuide(destination, 'mid'),
-                estimatedCost: getActivityCost('mid', 'morning')
+                accommodation: generateDynamicAccommodation(destination, 'mid'),
+                transport: generateDynamicTransport(destination, 'mid'),
+                estimatedCost: '₹500-1500'
             };
             
             itinerary.dailyPlans.push(dailyPlan);
         }
 
-        // Calculate total cost (budget level)
-        itinerary.totalCost = calculateTotalCost(days, 'mid');
+        // Calculate total cost dynamically
+        itinerary.totalCost = calculateDynamicCost(days, 'mid', destination);
         
-        return itinerary;
+        // Use standardized structure
+        const { createStandardizedItinerary } = require('./itinerary-structure');
+        
+        return createStandardizedItinerary({
+            destination: itinerary.destination,
+            days: itinerary.days,
+            interests: itinerary.interests,
+            totalCost: itinerary.totalCost,
+            highlights: itinerary.highlights,
+            localTips: itinerary.localTips,
+            dailyPlans: itinerary.dailyPlans,
+            recommendations: {
+                clothing: generateClothingRecommendations(interests),
+                activities: generateActivityRecommendations(interests),
+                precautions: generatePrecautionRecommendations(destination),
+                bestTime: generateBestTimeRecommendations(destination)
+            }
+        });
         
     } catch (error) {
         console.error('Error generating itinerary:', error);
@@ -322,16 +643,112 @@ async function generateItinerary(destination, days, interests) {
     }
 }
 
+function generateDynamicTheme(destination, dayNumber, travelStyles) {
+    const themes = [
+        'Cultural & Heritage Experience',
+        'Adventure & Exploration',
+        'Food & Culinary Journey',
+        'Relaxation & Wellness',
+        'Local Life & Traditions',
+        'Nature & Outdoor Activities'
+    ];
+    
+    // Create a theme based on the selected travel styles
+    if (travelStyles.includes('food')) {
+        return 'Food & Culinary Experience';
+    } else if (travelStyles.includes('adventure')) {
+        return 'Adventure & Exploration';
+    } else if (travelStyles.includes('relaxation')) {
+        return 'Relaxation & Wellness';
+    } else if (travelStyles.includes('culture')) {
+        return 'Cultural & Heritage Experience';
+    } else {
+        return themes[(dayNumber - 1) % themes.length];
+    }
+}
+
+// Helper functions for recommendations
+function generateClothingRecommendations(interests) {
+    const recommendations = [];
+    
+    if (interests.includes('adventure')) {
+        recommendations.push('Comfortable hiking shoes', 'Moisture-wicking clothing', 'Layered outfits for weather changes');
+    }
+    if (interests.includes('culture')) {
+        recommendations.push('Modest clothing for religious sites', 'Comfortable walking shoes', 'Light, breathable fabrics');
+    }
+    if (interests.includes('beach')) {
+        recommendations.push('Swimwear', 'Light cotton clothing', 'Sun protection gear');
+    }
+    if (interests.includes('food')) {
+        recommendations.push('Comfortable clothing for long meals', 'Easy-to-clean fabrics', 'Casual dining attire');
+    }
+    
+    return recommendations.length > 0 ? recommendations : ['Comfortable walking shoes', 'Weather-appropriate clothing', 'Layered outfits'];
+}
+
+function generateActivityRecommendations(interests) {
+    const recommendations = [];
+    
+    if (interests.includes('adventure')) {
+        recommendations.push('Hiking and trekking', 'Water sports', 'Rock climbing');
+    }
+    if (interests.includes('culture')) {
+        recommendations.push('Museum visits', 'Historical site exploration', 'Local art galleries');
+    }
+    if (interests.includes('food')) {
+        recommendations.push('Cooking classes', 'Food tours', 'Local market visits');
+    }
+    if (interests.includes('relaxation')) {
+        recommendations.push('Spa treatments', 'Yoga sessions', 'Meditation retreats');
+    }
+    
+    return recommendations.length > 0 ? recommendations : ['Sightseeing', 'Local experiences', 'Cultural activities'];
+}
+
+function generatePrecautionRecommendations(destination) {
+    const precautions = [
+        'Keep emergency contacts handy',
+        'Carry necessary medications',
+        'Stay hydrated',
+        'Be aware of local customs',
+        'Keep valuables secure'
+    ];
+    
+    // Add destination-specific precautions
+    if (destination.toLowerCase().includes('mountain')) {
+        precautions.push('Check weather conditions', 'Carry warm clothing', 'Inform someone of your route');
+    }
+    if (destination.toLowerCase().includes('beach')) {
+        precautions.push('Follow lifeguard instructions', 'Use sun protection', 'Be aware of water conditions');
+    }
+    
+    return precautions;
+}
+
+function generateBestTimeRecommendations(destination) {
+    const destinationLower = destination.toLowerCase();
+    
+    if (destinationLower.includes('mumbai') || destinationLower.includes('goa')) {
+        return 'October to March (pleasant weather, less rain)';
+    } else if (destinationLower.includes('delhi') || destinationLower.includes('jaipur')) {
+        return 'October to March (comfortable temperatures)';
+    } else if (destinationLower.includes('kerala')) {
+        return 'September to March (pleasant weather, less monsoon)';
+    } else if (destinationLower.includes('himachal') || destinationLower.includes('manali')) {
+        return 'March to June and September to November (pleasant weather)';
+    } else {
+        return 'October to March (generally pleasant weather across India)';
+    }
+}
+
+// Placeholder functions for external API integration
 async function searchPexelsImage(query) {
-    // Placeholder for Pexels image search
-    // In a real implementation, you would integrate with Pexels API
     console.log(`Searching for image: ${query}`);
     return `https://images.pexels.com/photos/placeholder/${encodeURIComponent(query)}.jpg`;
 }
 
 async function geocodeLocation(location) {
-    // Placeholder for geocoding
-    // In a real implementation, you would integrate with Google Maps Geocoding API
     console.log(`Geocoding location: ${location}`);
     
     // Return mock coordinates for common destinations
@@ -344,19 +761,23 @@ async function geocodeLocation(location) {
         'Kerala': { lat: 10.8505, lng: 76.2711 }
     };
     
-    return mockCoordinates[location] || { lat: 20.5937, lng: 78.9629 }; // Default to India center
+    return mockCoordinates[location] || { lat: 20.5937, lng: 78.9629 };
 }
 
 async function calculateDistance(from, to) {
-    // Placeholder for distance calculation
-    // In a real implementation, you would use Google Maps Distance Matrix API
     console.log(`Calculating distance from ${from} to ${to}`);
-    
-    // Return mock distance
     return {
         distance: '500 km',
         duration: '8 hours',
         mode: 'car'
     };
 }
+
+// Export all functions
+module.exports = {
+    generateItinerary,
+    searchPexelsImage,
+    geocodeLocation,
+    calculateDistance
+};
 

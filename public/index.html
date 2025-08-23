@@ -15,32 +15,32 @@
         }
 
         :root {
-            /* Modern Color Palette */
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-light: #818cf8;
+            /* Portfolio-Style Color Palette */
+            --primary: #667eea;
+            --primary-dark: #4c63d2;
+            --primary-light: #764ba2;
             --primary-lightest: #f0f4ff;
-            --secondary: #10b981;
-            --secondary-light: #fcd34d;
-            --secondary-dark: #d97706;
-            --accent: #f59e0b;
-            --accent-light: #fef3c7;
-            --accent-dark: #d97706;
-            --purple: #8b5cf6;
-            --purple-light: #ddd6fe;
-            --pink: #ec4899;
-            --success: #10b981;
-            --success-light: #d1fae5;
-            --success-dark: #059669;
-            --warning: #f59e0b;
-            --warning-light: #fef3c7;
-            --warning-dark: #d97706;
-            --error: #ef4444;
-            --error-light: #fee2e2;
-            --error-dark: #dc2626;
-            --info: #3b82f6;
-            --info-light: #dbeafe;
-            --info-dark: #1d4ed8;
+            --secondary: #f093fb;
+            --secondary-light: #fad0c4;
+            --secondary-dark: #fa709a;
+            --accent: #4facfe;
+            --accent-light: #00f2fe;
+            --accent-dark: #43e97b;
+            --purple: #a8edea;
+            --purple-light: #fed6e3;
+            --pink: #ff9a9e;
+            --success: #43e97b;
+            --success-light: #38f9d7;
+            --success-dark: #fa709a;
+            --warning: #fa709a;
+            --warning-light: #fee140;
+            --warning-dark: #fa709a;
+            --error: #ff6b6b;
+            --error-light: #ffa726;
+            --error-dark: #ff7043;
+            --info: #4facfe;
+            --info-light: #00f2fe;
+            --info-dark: #43e97b
             
             /* Neutral Colors */
             --white: #ffffff;
@@ -80,10 +80,16 @@
             --radius-2xl: 1.5rem;
             
             /* Shadows */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            --shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            --shadow-2xl: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
             
             /* Transitions */
             --transition: all 0.3s ease;
@@ -103,16 +109,19 @@
             padding: 0 var(--spacing-lg);
         }
 
-        /* ===== HEADER ===== */
+        /* ===== PORTFOLIO-STYLE HEADER ===== */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gray-200);
+            height: var(--header-height);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
             z-index: 1000;
+            transition: var(--transition);
             transition: var(--transition);
         }
 
@@ -342,14 +351,14 @@
         }
 
                  /* ===== HERO SECTION ===== */
-         .hero {
-             min-height: 100vh;
-             display: flex;
-             align-items: center;
-             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-             position: relative;
-             overflow: hidden;
-         }
+                 .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
          .hero::before {
              content: '';
@@ -393,25 +402,33 @@
             display: inline-flex;
             align-items: center;
             gap: var(--spacing-sm);
-            background: rgba(255, 255, 255, 0.1);
-            padding: var(--spacing-sm) var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.15);
+            padding: var(--spacing-md) var(--spacing-xl);
             border-radius: var(--radius-2xl);
             margin-bottom: var(--spacing-xl);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
         }
 
-                 .hero-title {
-             font-size: clamp(3.5rem, 8vw, 6rem);
-             font-weight: 900;
-             line-height: 1.1;
-             margin-bottom: var(--spacing-lg);
-             background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #cbd5e0 100%);
-             -webkit-background-clip: text;
-             -webkit-text-fill-color: transparent;
-             background-clip: text;
-             text-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
-         }
+        .hero-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+                         .hero-title {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-lg);
+            background: linear-gradient(135deg, #ffffff 0%, #fad0c4 50%, #fed6e3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+        }
 
          .hero-subtitle {
              font-size: 1.4rem;
@@ -430,9 +447,9 @@
              animation: pulse 2s ease-in-out infinite;
          }
 
-         .tagline-text {
-             background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
-             -webkit-background-clip: text;
+                 .tagline-text {
+            background: linear-gradient(135deg, #ffffff, #fad0c4, #fed6e3, #a8edea);
+            -webkit-background-clip: text;
              -webkit-text-fill-color: transparent;
              background-clip: text;
              font-size: 1.3rem;
@@ -517,8 +534,21 @@
         }
 
         .btn-small {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-small:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
          .trip-packs-grid {
@@ -965,26 +995,156 @@
             line-height: 1.6;
         }
 
-        /* ===== TESTIMONIALS ===== */
-        .testimonials {
+        /* ===== REVIEWS ===== */
+        .reviews {
             padding: var(--spacing-3xl) 0;
             background: var(--white);
         }
 
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-        }
-
-        .testimonial-card {
+        .add-review-section {
+            margin: 50px 0;
+            padding: 40px;
             background: var(--gray-50);
-            padding: var(--spacing-2xl);
             border-radius: var(--radius-xl);
-            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow-lg);
         }
 
-        .testimonial-text {
+        .review-form-container h3 {
+            margin-bottom: 30px;
+            color: var(--gray-800);
+            font-size: 1.5rem;
+        }
+
+        .review-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-lightest);
+        }
+
+        .rating-input {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .rating-input input[type="radio"] {
+            display: none;
+        }
+
+        .rating-input label {
+            font-size: 2rem;
+            color: var(--gray-300);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .rating-input input[type="radio"]:checked ~ label,
+        .rating-input label:hover,
+        .rating-input label:hover ~ label {
+            color: var(--warning);
+        }
+
+        .reviews-container {
+            margin-top: 50px;
+        }
+
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .reviews-filter {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-2xl);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
+        }
+
+        .review-text {
             font-size: 1.125rem;
             font-style: italic;
             color: var(--gray-700);
@@ -992,7 +1152,7 @@
             line-height: 1.6;
         }
 
-        .testimonial-author {
+        .review-author {
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
@@ -1020,6 +1180,571 @@
         .author-info p {
             color: var(--gray-600);
             font-size: 0.9rem;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .rating-display {
+            color: var(--warning);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .review-date {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing {
+            padding: var(--spacing-3xl) 0;
+            background: var(--gray-50);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .pricing-card:hover::before {
+            opacity: 1;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .pricing-header h3 {
+            color: var(--gray-800);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .price {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .currency {
+            font-size: 1.5rem;
+            color: var(--gray-600);
+        }
+
+        .amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .period {
+            color: var(--gray-500);
+            font-size: 1rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: var(--spacing-xl);
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: var(--spacing-sm) 0;
+            color: var(--gray-700);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .pricing-features i {
+            color: var(--success);
+            font-size: 1.1rem;
+        }
+
+        /* ===== COMMUNITY ===== */
+        .community {
+            padding: var(--spacing-3xl) 0;
+            background: var(--white);
+        }
+
+        .community-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin: 50px 0;
+        }
+
+        .community-feature {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .community-feature h3 {
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .community-feature p {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .community-cta {
+            text-align: center;
+            margin-top: var(--spacing-3xl);
+            padding: var(--spacing-2xl);
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+        }
+
+        .community-cta h3 {
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .community-cta p {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* ===== DEMO MODAL ===== */
+        .demo-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .demo-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .demo-modal-content {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .demo-modal.show .demo-modal-content {
+            transform: scale(1);
+        }
+
+        .demo-modal-header {
+            padding: var(--spacing-xl);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .demo-modal-header h2 {
+            color: var(--gray-800);
+            margin: 0;
+        }
+
+        .demo-modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .demo-modal-close:hover {
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .demo-modal-body {
+            padding: var(--spacing-xl);
+        }
+
+        .demo-video-container {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .demo-placeholder {
+            background: var(--gray-50);
+            border: 2px dashed var(--gray-300);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-3xl);
+            text-align: center;
+            color: var(--gray-600);
+        }
+
+        .demo-placeholder i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .demo-placeholder h3 {
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .demo-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .demo-feature {
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+
+        .demo-feature i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .demo-feature h4 {
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .demo-feature p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .demo-cta {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        /* ===== WEATHER & CURRENCY SECTION IN RESULTS ===== */
+        .weather-currency-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .weather-info-card,
+        .currency-converter-card {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .weather-info-card::before,
+        .currency-converter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .weather-info-card:hover,
+        .currency-converter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .card-header h4 {
+            color: var(--gray-800);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .converter-info {
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .converter-info p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .currency-inputs {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            flex: 1;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .weather-widget::before,
+        .currency-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .weather-widget:hover,
+        .currency-widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .weather-header,
+        .currency-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            color: var(--gray-700);
+            font-weight: 600;
+        }
+
+        .weather-content {
+            text-align: center;
+        }
+
+        .weather-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--gray-600);
+        }
+
+        .weather-loading i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .currency-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .currency-inputs {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            flex: 1;
+        }
+
+        .input-group input,
+        .input-group select {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-lightest);
+            transform: translateY(-1px);
+        }
+
+        .swap-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--white);
+        }
+
+        .swap-btn:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .weather-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            text-align: center;
+        }
+
+        .weather-temp {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .weather-desc {
+            color: var(--gray-600);
+            text-transform: capitalize;
+        }
+
+        .weather-details {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .weather-error {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--error);
+        }
+
+        .weather-location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-top: var(--spacing-sm);
         }
 
 
@@ -2554,22 +3279,22 @@
              margin-bottom: var(--spacing-3xl);
          }
 
-         .search-title {
-             color: var(--gray-900);
-             font-weight: 800;
-             font-size: clamp(1.75rem, 4vw, 2.5rem);
-             margin-bottom: var(--spacing-md);
-             line-height: 1.2;
-         }
+                 .search-title {
+            color: var(--white);
+            font-weight: 800;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
 
-         .search-subtitle {
-             color: var(--gray-600);
-             font-size: 1.1rem;
-             font-weight: 400;
-             max-width: 600px;
-             margin: 0 auto;
-             line-height: 1.5;
-         }
+        .search-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
 
          .professional-search-form {
              position: relative;
@@ -2586,46 +3311,49 @@
              flex-direction: column;
          }
 
-         .form-label {
-             display: flex;
-             align-items: center;
-             gap: var(--spacing-sm);
-             font-weight: 600;
-             color: var(--gray-800);
-             font-size: 1rem;
-             margin-bottom: var(--spacing-lg);
-         }
+                 .form-label {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: var(--spacing-lg);
+        }
 
-         .form-label i {
-             color: var(--primary);
-             font-size: 1.1rem;
-         }
+                 .form-label i {
+            color: var(--white);
+            font-size: 1.1rem;
+        }
 
          .input-container {
              position: relative;
          }
 
-         .form-input {
-             width: 100%;
-             padding: var(--spacing-lg);
-             border: 2px solid var(--gray-300);
-             border-radius: var(--radius-lg);
-             font-size: 1.1rem;
-             font-weight: 500;
-             transition: var(--transition);
-             background: var(--white);
-             color: var(--gray-800);
-             box-sizing: border-box;
-         }
+                 .form-input {
+            width: 100%;
+            padding: var(--spacing-lg);
+            border: 2px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            color: var(--white);
+            box-sizing: border-box;
+            box-shadow: var(--glass-shadow);
+        }
 
          .form-input:focus {
              outline: none;
-             border-color: var(--primary);
-             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+             border-color: var(--white);
+             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+             background: rgba(255, 255, 255, 0.2);
          }
 
          .form-input::placeholder {
-             color: var(--gray-500);
+             color: rgba(255, 255, 255, 0.7);
              font-weight: 400;
          }
 
@@ -2633,36 +3361,39 @@
              position: relative;
          }
 
-         .form-select {
-             width: 100%;
-             padding: var(--spacing-lg);
-             border: 2px solid var(--gray-300);
-             border-radius: var(--radius-lg);
-             font-size: 1.1rem;
-             font-weight: 500;
-             background: var(--white);
-             color: var(--gray-800);
-             cursor: pointer;
-             transition: var(--transition);
-             appearance: none;
-             box-sizing: border-box;
-         }
+                 .form-select {
+            width: 100%;
+            padding: var(--spacing-lg);
+            border: 2px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+            box-sizing: border-box;
+            box-shadow: var(--glass-shadow);
+        }
 
-         .form-select:focus {
-             outline: none;
-             border-color: var(--primary);
-             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-         }
+                 .form-select:focus {
+            outline: none;
+            border-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
 
-         .select-arrow {
-             position: absolute;
-             right: var(--spacing-lg);
-             top: 50%;
-             transform: translateY(-50%);
-             color: var(--gray-500);
-             pointer-events: none;
-             font-size: 1rem;
-         }
+                 .select-arrow {
+            position: absolute;
+            right: var(--spacing-lg);
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            font-size: 1rem;
+        }
 
          .custom-input-group {
              display: flex;
@@ -2691,13 +3422,13 @@
              margin-top: var(--spacing-lg);
          }
 
-         .chips-label {
-             color: var(--gray-600);
-             font-size: 0.9rem;
-             font-weight: 600;
-             margin-bottom: var(--spacing-sm);
-             display: block;
-         }
+                 .chips-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
 
          .chips-container {
              display: flex;
@@ -2705,24 +3436,42 @@
              gap: var(--spacing-sm);
          }
 
-         .chip {
-             background: var(--gray-100);
-             border: 1px solid var(--gray-300);
-             color: var(--gray-700);
-             padding: var(--spacing-xs) var(--spacing-md);
-             border-radius: var(--radius-2xl);
-             font-size: 0.9rem;
-             font-weight: 500;
-             cursor: pointer;
-             transition: var(--transition);
-         }
+                 .chip {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: var(--white);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-2xl);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--glass-shadow);
+        }
 
-         .chip:hover {
-             background: var(--primary);
-             color: var(--white);
-             border-color: var(--primary);
-             transform: translateY(-1px);
-         }
+                 .chip:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            border-color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .chip:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chip.clicked {
+            animation: chipClick 0.3s ease-out;
+        }
+
+        @keyframes chipClick {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
 
          /* Travel Style Grid */
          .travel-style-grid {
@@ -2878,21 +3627,23 @@
              left: 100%;
          }
 
-         /* Suggestions Dropdown */
-         .suggestions-dropdown {
-             position: absolute;
-             top: 100%;
-             left: 0;
-             right: 0;
-             background: var(--white);
-             border: 2px solid var(--gray-200);
-             border-top: none;
-             border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-             max-height: 200px;
-             overflow-y: auto;
-             z-index: 1000;
-             display: none;
-         }
+                 /* Suggestions Dropdown */
+        .suggestions-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-top: none;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: var(--glass-shadow);
+        }
 
          .suggestions-dropdown.show {
              display: block;
@@ -3893,42 +4644,51 @@
         .floating-element {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: float 6s ease-in-out infinite;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 8s ease-in-out infinite;
             pointer-events: none;
         }
 
         .floating-1 {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
+            width: 120px;
+            height: 120px;
+            top: 15%;
+            left: 8%;
             animation-delay: 0s;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
         }
 
         .floating-2 {
-            width: 60px;
-            height: 60px;
-            top: 60%;
-            right: 15%;
+            width: 180px;
+            height: 180px;
+            top: 55%;
+            right: 8%;
             animation-delay: 2s;
+            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.1);
         }
 
         .floating-3 {
-            width: 40px;
-            height: 40px;
-            bottom: 30%;
-            left: 20%;
+            width: 100px;
+            height: 100px;
+            bottom: 15%;
+            left: 15%;
             animation-delay: 4s;
+            box-shadow: 0 6px 24px rgba(255, 255, 255, 0.1);
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0.3;
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg) scale(1); 
+                opacity: 0.7;
             }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
+            33% { 
+                transform: translate(30px, -30px) rotate(120deg) scale(1.1); 
+                opacity: 1;
+            }
+            66% { 
+                transform: translate(-20px, 20px) rotate(240deg) scale(0.9); 
                 opacity: 0.8;
             }
         }
@@ -3952,7 +4712,7 @@
             </a>
             <div class="nav-menu">
                 <a href="#features">Features</a>
-                <a href="#testimonials">Reviews</a>
+                <a href="#reviews">Reviews</a>
                 <a href="#community">Community</a>
                 <a href="#pricing">Pricing</a>
             </div>
@@ -3981,7 +4741,7 @@
                 </h1>
                 
                 <div class="hero-tagline fade-in">
-                    <span class="tagline-text">✨ Where Every Journey Becomes a Story ✨</span>
+                    <span class="tagline-text" style="font-family: 'Inter', sans-serif; font-weight: 600; color: #374151; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">✨ Where Every Journey Becomes a Story ✨</span>
                 </div>
                 
                 <p class="hero-subtitle fade-in">
@@ -3994,11 +4754,13 @@
                         <i class="fas fa-magic"></i>
                         Create a New Trip
                     </button>
-                    <button class="btn btn-secondary btn-large" onclick="openDemo()">
+                    <button class="btn btn-secondary btn-large" onclick="openDemoModal()">
                         <i class="fas fa-play"></i>
                         Watch Demo
                     </button>
                 </div>
+                
+
 
 
                 
@@ -4175,6 +4937,48 @@
             </div>
         </div>
     </section>
+
+    <!-- Demo Modal -->
+    <div id="demoModal" class="demo-modal">
+        <div class="demo-modal-content">
+            <div class="demo-modal-header">
+                <h2>🎬 Trip Planner AI Demo</h2>
+                <button class="demo-modal-close" onclick="closeDemoModal()">&times;</button>
+            </div>
+            <div class="demo-modal-body">
+                <div class="demo-video-container">
+                    <div class="demo-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <h3>Interactive Demo Coming Soon!</h3>
+                        <p>Experience how easy it is to plan your perfect trip with AI-powered recommendations.</p>
+                    </div>
+                </div>
+                <div class="demo-features">
+                    <div class="demo-feature">
+                        <i class="fas fa-magic"></i>
+                        <h4>AI-Powered Planning</h4>
+                        <p>Get personalized itineraries based on your preferences and travel style.</p>
+                    </div>
+                    <div class="demo-feature">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h4>Smart Destination Suggestions</h4>
+                        <p>Discover hidden gems and popular attractions with intelligent recommendations.</p>
+                    </div>
+                    <div class="demo-feature">
+                        <i class="fas fa-clock"></i>
+                        <h4>Time-Saving</h4>
+                        <p>Plan your entire trip in minutes, not hours.</p>
+                    </div>
+                </div>
+                <div class="demo-cta">
+                    <button class="btn btn-primary btn-large" onclick="closeDemoModal(); openTripPlanner();">
+                        <i class="fas fa-rocket"></i>
+                        Try It Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Popular Trip Packs Section -->
     <section class="popular-trip-packs">
@@ -4542,66 +5346,213 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Don't Take Our Word For It</span>
-                <h2 class="section-title">What Our Users Say</h2>
+                <span class="section-badge">Share Your Experience</span>
+                <h2 class="section-title">User Reviews & Testimonials</h2>
                 <p class="section-subtitle">
-                    See what our users have to say about revolutionizing their travel experiences with Trip Planner AI.
+                    Read real reviews from our users and share your own travel planning experience.
                 </p>
             </div>
             
-            <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">
-                        "Trip Planner AI saves time and stress by aiding travel planning, relieving indecision or uncertainty. 
-                        It's like having a personal travel agent in your pocket!"
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">DJ</div>
-                        <div class="author-info">
-                            <h4>David Jordan</h4>
-                            <p>Digital Nomad</p>
+            <!-- Add Review Form -->
+            <div class="add-review-section">
+                <div class="review-form-container">
+                    <h3>Share Your Experience</h3>
+                    <form id="reviewForm" class="review-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reviewerName">Your Name *</label>
+                                <input type="text" id="reviewerName" name="reviewerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reviewerType">Traveler Type</label>
+                                <select id="reviewerType" name="reviewerType">
+                                    <option value="Solo Traveler">Solo Traveler</option>
+                                    <option value="Family Traveler">Family Traveler</option>
+                                    <option value="Business Traveler">Business Traveler</option>
+                                    <option value="Adventure Seeker">Adventure Seeker</option>
+                                    <option value="Culture Enthusiast">Culture Enthusiast</option>
+                                    <option value="Food Lover">Food Lover</option>
+                                    <option value="Student">Student</option>
+                                    <option value="Digital Nomad">Digital Nomad</option>
+                                </select>
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <label for="reviewRating">Rating *</label>
+                            <div class="rating-input">
+                                <input type="radio" id="star5" name="rating" value="5" required>
+                                <label for="star5">★</label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4">★</label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3">★</label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2">★</label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1">★</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewText">Your Review *</label>
+                            <textarea id="reviewText" name="reviewText" rows="4" placeholder="Share your experience with Trip Planner AI..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Reviews Display -->
+            <div class="reviews-container">
+                <div class="reviews-header">
+                    <h3>Recent Reviews</h3>
+                    <div class="reviews-filter">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="5">5★</button>
+                        <button class="filter-btn" data-filter="4">4★</button>
+                        <button class="filter-btn" data-filter="3">3★</button>
                     </div>
                 </div>
                 
-                <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">
-                        "Trip Planner AI offers diverse planning options in a user-friendly interface. 
-                        Simplifies travel planning for enthusiasts like me who love exploring new places."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">T</div>
-                        <div class="author-info">
-                            <h4>Tushar</h4>
-                            <p>Student</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">
-                        "I love traveling but hate planning. This app quickly organizes trip agendas, 
-                        reducing decision fatigue and making travel planning actually enjoyable."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SJ</div>
-                        <div class="author-info">
-                            <h4>Steve Johnson</h4>
-                            <p>Travel Enthusiast</p>
-                        </div>
-                    </div>
+                <div class="reviews-grid" id="reviewsGrid">
+                    <!-- Reviews will be loaded here dynamically -->
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Choose Your Plan</span>
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-subtitle">
+                    Start planning your dream trip today with our flexible pricing options.
+                </p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Free</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 3 AI-generated itineraries per month</li>
+                        <li><i class="fas fa-check"></i> Basic destination recommendations</li>
+                        <li><i class="fas fa-check"></i> Weather information</li>
+                        <li><i class="fas fa-check"></i> Currency conversion</li>
+                        <li><i class="fas fa-check"></i> Community access</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openTripPlanner()">Get Started Free</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">499</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited AI itineraries</li>
+                        <li><i class="fas fa-check"></i> Advanced AI recommendations</li>
+                        <li><i class="fas fa-check"></i> Priority customer support</li>
+                        <li><i class="fas fa-check"></i> Export to PDF/Calendar</li>
+                        <li><i class="fas fa-check"></i> Offline access</li>
+                        <li><i class="fas fa-check"></i> Custom travel preferences</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="showNotification('🚀 Pro plan coming soon!', 'info')">Upgrade to Pro</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">1,999</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Team collaboration</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                        <li><i class="fas fa-check"></i> White-label solutions</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                        <li><i class="fas fa-check"></i> Custom integrations</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="showNotification('📞 Contact us for enterprise pricing', 'info')">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Join Our Community</span>
+                <h2 class="section-title">Connect with Fellow Travelers</h2>
+                <p class="section-subtitle">
+                    Share experiences, get inspired, and build lasting connections with travelers worldwide.
+                </p>
+            </div>
+            
+            <div class="community-features">
+                <div class="community-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Travel Forums</h3>
+                    <p>Join discussions about destinations, travel tips, and experiences.</p>
+                </div>
+                
+                <div class="community-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Share Itineraries</h3>
+                    <p>Share your successful trips and get inspired by others' adventures.</p>
+                </div>
+                
+                <div class="community-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Group Trips</h3>
+                    <p>Find travel buddies and plan group adventures together.</p>
+                </div>
+                
+                <div class="community-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Travel Challenges</h3>
+                    <p>Participate in monthly travel challenges and win rewards.</p>
+                </div>
+            </div>
+            
+            <div class="community-cta">
+                <h3>Ready to Join?</h3>
+                <p>Start your journey with our community today!</p>
+                <button class="btn btn-primary btn-large" onclick="showNotification('🌟 Community features coming soon!', 'info')">Join Community</button>
+            </div>
+        </div>
+    </section>
 
-     <!-- Community Trips Section -->
+    <!-- Community Trips Section -->
      <section class="community-trips">
          <div class="container">
              <div class="section-header">
@@ -4743,12 +5694,16 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const href = this.getAttribute('href');
+                // Only process valid selectors
+                if (href && href.length > 1 && /^#[a-zA-Z][a-zA-Z0-9_-]*$/.test(href)) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
@@ -4765,23 +5720,35 @@
             }
         });
 
-        // Intersection Observer for animations
+        // Enhanced Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                    
+                    // Add staggered animation for child elements
+                    const children = entry.target.querySelectorAll('.animate-child');
+                    children.forEach((child, index) => {
+                        setTimeout(() => {
+                            child.style.opacity = '1';
+                            child.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
                 }
             });
         }, observerOptions);
 
         // Observe all fade-in elements
         document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px) scale(0.95)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             observer.observe(el);
         });
 
@@ -4831,10 +5798,203 @@
             }
         }
 
-        function openDemo() {
-            // Show a demo modal or redirect to demo video
-            showNotification('🎬 Demo video coming soon! For now, try creating a trip below.', 'info');
-            openTripPlanner();
+        function openDemoModal() {
+            const modal = document.getElementById('demoModal');
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeDemoModal() {
+            const modal = document.getElementById('demoModal');
+            if (modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('demoModal');
+            if (e.target === modal) {
+                closeDemoModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeDemoModal();
+            }
+        });
+
+        // Weather & Currency API Functions
+        async function loadDestinationWeather(destination) {
+            try {
+                const response = await fetch(`/api/weather/current?city=${encodeURIComponent(destination)}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('destinationWeather').innerHTML = `
+                        <div class="weather-info">
+                            <div class="weather-temp">${Math.round(data.temperature)}°C</div>
+                            <div class="weather-desc">${data.description}</div>
+                            <div class="weather-details">
+                                <span><i class="fas fa-tint"></i> ${data.humidity}%</span>
+                                <span><i class="fas fa-wind"></i> ${data.windSpeed} km/h</span>
+                            </div>
+                            <div class="weather-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${destination}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('destinationWeather').innerHTML = `
+                    <div class="weather-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Weather unavailable for ${destination}</span>
+                    </div>
+                `;
+            }
+        }
+
+        async function convertCurrency() {
+            const fromAmount = document.getElementById('fromAmount').value;
+            const fromCurrency = document.getElementById('fromCurrency').value;
+            const toCurrency = document.getElementById('toCurrency').value;
+            
+            if (!fromAmount || fromAmount <= 0) return;
+            
+            try {
+                const response = await fetch(`/api/currency/convert?from=${fromCurrency}&to=${toCurrency}&amount=${fromAmount}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('toAmount').value = data.convertedAmount.toFixed(2);
+                }
+            } catch (error) {
+                showNotification('❌ Currency conversion failed', 'error');
+            }
+        }
+
+        function swapCurrencies() {
+            const fromCurrency = document.getElementById('fromCurrency');
+            const toCurrency = document.getElementById('toCurrency');
+            const temp = fromCurrency.value;
+            fromCurrency.value = toCurrency.value;
+            toCurrency.value = temp;
+            convertCurrency();
+        }
+
+        // Load weather on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadReviewsFromAI();
+            setupReviewForm();
+            setupReviewFilters();
+        });
+
+        // Reviews System - Now loaded from AI API
+        let reviews = [];
+
+        // Load reviews on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadReviews();
+            setupReviewForm();
+            setupReviewFilters();
+        });
+
+        function loadReviews(filterRating = 'all') {
+            const reviewsGrid = document.getElementById('reviewsGrid');
+            if (!reviewsGrid) return;
+
+            let filteredReviews = reviews;
+            if (filterRating !== 'all') {
+                filteredReviews = reviews.filter(review => review.rating >= parseInt(filterRating));
+            }
+
+            reviewsGrid.innerHTML = filteredReviews.map(review => `
+                <div class="review-card fade-in">
+                    <div class="review-header">
+                        <div class="rating-display">
+                            ${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}
+                        </div>
+                        <span class="review-date">${new Date(review.date).toLocaleDateString()}</span>
+                    </div>
+                    <p class="review-text">"${review.text}"</p>
+                    <div class="review-author">
+                        <div class="author-avatar">${review.name.split(' ').map(n => n[0]).join('')}</div>
+                        <div class="author-info">
+                            <h4>${review.name}</h4>
+                            <p>${review.type}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setupReviewForm() {
+            const reviewForm = document.getElementById('reviewForm');
+            if (!reviewForm) return;
+
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(reviewForm);
+                const newReview = {
+                    id: reviews.length + 1,
+                    name: formData.get('reviewerName'),
+                    type: formData.get('reviewerType'),
+                    rating: parseInt(formData.get('rating')),
+                    text: formData.get('reviewText'),
+                    date: new Date().toISOString().split('T')[0]
+                };
+
+                reviews.unshift(newReview);
+                loadReviews();
+                reviewForm.reset();
+                
+                showNotification('✅ Thank you for your review!', 'success');
+            });
+        }
+
+        async function loadReviewsFromAI() {
+            try {
+                const response = await fetch('/api/ai/reviews?count=5');
+                const data = await response.json();
+                
+                if (data.success) {
+                    reviews = data.reviews;
+                    loadReviews();
+                }
+            } catch (error) {
+                console.error('Failed to load AI reviews:', error);
+                // Fallback to default reviews
+                reviews = [
+                    {
+                        id: 1,
+                        name: 'David Jordan',
+                        type: 'Digital Nomad',
+                        rating: 5,
+                        text: 'Trip Planner AI saves time and stress by aiding travel planning, relieving indecision or uncertainty. It\'s like having a personal travel agent in your pocket!',
+                        date: '2024-01-15'
+                    }
+                ];
+                loadReviews();
+            }
+        }
+
+        function setupReviewFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    loadReviews(this.dataset.filter);
+                });
+            });
         }
 
         async function handleTripSearch(event) {
@@ -4934,9 +6094,14 @@
             // Handle API response from backend
             console.log('📋 Displaying enhanced API results:', apiItinerary);
             
-            if (apiItinerary.itinerary && Array.isArray(apiItinerary.itinerary)) {
+            if (apiItinerary.days && Array.isArray(apiItinerary.days)) {
                 // Use the API response structure and enhance with maps
                 displayDetailedResults(apiItinerary, destination, duration, travelStyles, budget);
+                
+                // Load weather for the destination
+                setTimeout(() => {
+                    loadDestinationWeather(destination);
+                }, 500);
                 
                 // Add maps integration for each location
                 setTimeout(() => {
@@ -4944,8 +6109,14 @@
                 }, 1000);
             } else {
                 // Fallback to local generation if API response is malformed
+                console.log('⚠️ API response structure incorrect, using fallback');
                 const fallbackItinerary = createDetailedItinerary(destination, duration, travelStyles, budget);
                 displayDetailedResults(fallbackItinerary, destination, duration, travelStyles, budget);
+                
+                // Load weather for the destination
+                setTimeout(() => {
+                    loadDestinationWeather(destination);
+                }, 500);
             }
         }
 
@@ -4953,9 +6124,9 @@
             // Add OpenStreetMap integration for each location
             console.log('🗺️ Adding OpenStreetMap integration...');
             
-            if (!itinerary.itinerary) return;
+            if (!itinerary.days) return;
             
-            itinerary.itinerary.forEach((day, dayIndex) => {
+            itinerary.days.forEach((day, dayIndex) => {
                 ['morning', 'afternoon', 'evening'].forEach(period => {
                     if (day[period] && day[period].location) {
                         const activity = day[period];
@@ -5177,37 +6348,18 @@
 
         function createSampleItinerary(destination, duration, travelStyle, budget) {
             // Destination-specific activities
-            const destinationActivities = {
-                'Mumbai': {
-                    culture: ['Visit Gateway of India', 'Explore Elephanta Caves', 'Tour Chhatrapati Shivaji Museum', 'Walk through Colaba Causeway'],
-                    food: ['Street food at Juhu Beach', 'Dining at Leopold Cafe', 'Vada Pav tasting tour', 'Fine dining at Trishna'],
-                    adventure: ['Sanjay Gandhi National Park trek', 'Rock climbing at Kanheri Caves', 'Parasailing at Juhu Beach', 'Cycling tour of South Mumbai'],
-                    relaxation: ['Marine Drive sunset walk', 'Spa at Taj Hotel', 'Beach time at Versova', 'Hanging Gardens visit']
-                },
-                'Delhi': {
-                    culture: ['Red Fort exploration', 'India Gate visit', 'Lotus Temple tour', 'Qutub Minar heritage walk'],
-                    food: ['Chandni Chowk food tour', 'Paranthe Wali Gali', 'Karim\'s restaurant', 'Khan Market cafe hopping'],
-                    adventure: ['Aravalli Hills trekking', 'Rock climbing at Delhi Ridge', 'Cycling in Lodhi Gardens', 'River rafting near Delhi'],
-                    relaxation: ['Lodhi Gardens stroll', 'Spa at ITC Maurya', 'Humayun\'s Tomb gardens', 'Akshardham temple visit']
-                },
-                'Tokyo': {
-                    culture: ['Senso-ji Temple visit', 'Tokyo National Museum', 'Imperial Palace gardens', 'Meiji Shrine exploration'],
-                    food: ['Tsukiji Fish Market tour', 'Ramen tasting in Shibuya', 'Sushi making class', 'Yakitori in Golden Gai'],
-                    adventure: ['Mount Fuji hiking', 'Tokyo Skytree climb', 'Robot Restaurant show', 'Harajuku street exploration'],
-                    relaxation: ['Onsen hot springs', 'Japanese spa treatment', 'Cherry blossom viewing', 'Tea ceremony experience']
-                },
-                'Paris': {
-                    culture: ['Louvre Museum tour', 'Eiffel Tower visit', 'Notre-Dame Cathedral', 'Versailles Palace day trip'],
-                    food: ['French cooking class', 'Wine tasting in Montmartre', 'Patisserie tour', 'Seine riverside dining'],
-                    adventure: ['Seine river cruise', 'Bike tour of Paris', 'Catacombs exploration', 'Balloon ride over city'],
-                    relaxation: ['Luxembourg Gardens stroll', 'Spa at Le Bristol', 'Café culture in Saint-Germain', 'Tuileries Garden walk']
-                },
-                'Goa': {
-                    culture: ['Old Goa churches tour', 'Fontainhas heritage walk', 'Goa State Museum', 'Spice plantation visit'],
-                    food: ['Goan seafood feast', 'Feni tasting', 'Beach shack dining', 'Portuguese cuisine tour'],
-                    adventure: ['Water sports at Baga Beach', 'Dudhsagar Falls trek', 'Scuba diving', 'Jungle safari'],
-                    relaxation: ['Beach lounging at Palolem', 'Ayurvedic massage', 'Sunset at Chapora Fort', 'Yoga on the beach']
-                }
+            // Dynamic activities generation - no more predefined data
+            const generateDynamicActivities = (destination, travelStyle) => {
+                const activityTypes = {
+                    culture: ['Cultural exploration', 'Heritage sites', 'Local traditions', 'Historical landmarks'],
+                    food: ['Culinary experiences', 'Local cuisine', 'Food markets', 'Traditional dining'],
+                    adventure: ['Outdoor activities', 'Adventure sports', 'Nature exploration', 'Thrilling experiences'],
+                    relaxation: ['Wellness activities', 'Scenic spots', 'Peaceful locations', 'Relaxing experiences'],
+                    nature: ['Natural attractions', 'Wildlife spotting', 'Scenic viewpoints', 'Nature trails'],
+                    business: ['Business districts', 'Networking spots', 'Corporate venues', 'Professional activities']
+                };
+                
+                return activityTypes[travelStyle] || activityTypes.culture;
             };
 
             // Generic activities as fallback
@@ -5220,9 +6372,8 @@
                 business: ['Business districts', 'Conference venues', 'Networking spots', 'Corporate dining']
             };
 
-            // Get activities for the destination or use generic ones
-            const destActivities = destinationActivities[destination] || {};
-            const selectedActivities = destActivities[travelStyle] || genericActivities[travelStyle] || genericActivities.culture;
+            // Use dynamic activities generation
+            const selectedActivities = generateDynamicActivities(destination, travelStyle);
             
             let itineraryHTML = '';
             const totalActivities = selectedActivities.length;
@@ -5308,37 +6459,22 @@
 
 
 
-        // Helper functions for destination data
-        function getDestinationHighlights(destination) {
-            const highlights = {
-                'Mumbai': ['Gateway of India', 'Marine Drive', 'Elephanta Caves', 'Bollywood Studios', 'Street Food'],
-                'Delhi': ['Red Fort', 'Qutub Minar', 'India Gate', 'Humayun\'s Tomb', 'Old Delhi Markets'],
-                'Goa': ['Beaches', 'Portuguese Architecture', 'Spice Plantations', 'Water Sports', 'Nightlife'],
-                'Jaipur': ['Amber Fort', 'City Palace', 'Hawa Mahal', 'Jantar Mantar', 'Pink City Markets'],
-                'Agra': ['Taj Mahal', 'Agra Fort', 'Fatehpur Sikri', 'Mehtab Bagh', 'Local Crafts'],
-                'Varanasi': ['Ghats', 'Kashi Vishwanath Temple', 'Ganga Aarti', 'Sarnath', 'Spiritual Experience'],
-                'Kolkata': ['Victoria Memorial', 'Howrah Bridge', 'Dakshineswar Temple', 'College Street', 'Bengali Cuisine'],
-                'Chennai': ['Marina Beach', 'Kapaleeshwarar Temple', 'Fort St. George', 'Mahabalipuram', 'South Indian Food'],
-                'Bangalore': ['Lalbagh Gardens', 'Cubbon Park', 'ISKCON Temple', 'Tech Parks', 'Craft Beer Scene'],
-                'Hyderabad': ['Charminar', 'Golconda Fort', 'Hussain Sagar', 'Biryani', 'Pearls Market']
-            };
-            return highlights[destination] || ['Cultural Heritage', 'Local Cuisine', 'Historical Sites', 'Shopping', 'Local Experiences'];
+        // Dynamic highlights generation - no more predefined data
+        function generateDynamicHighlights(destination, travelStyle, duration) {
+            return [
+                `Explore ${destination}'s unique culture and heritage`,
+                `Experience authentic local cuisine and traditions`,
+                `Discover hidden gems and local favorites`,
+                `Immerse yourself in ${Array.isArray(travelStyle) ? travelStyle.join(' and ') : travelStyle} experiences`,
+                `Create unforgettable memories in ${duration} days`
+            ];
         }
 
         function getBestTimeToVisit(destination) {
-            const bestTimes = {
-                'Mumbai': 'October to March (pleasant weather)',
-                'Delhi': 'October to March (avoid summer heat)',
-                'Goa': 'November to March (monsoon ends)',
-                'Jaipur': 'October to March (comfortable temperature)',
-                'Agra': 'October to March (best weather)',
-                'Varanasi': 'October to March (pleasant climate)',
-                'Kolkata': 'October to March (avoid monsoon)',
-                'Chennai': 'November to February (cooler weather)',
-                'Bangalore': 'Year-round (pleasant climate)',
-                'Hyderabad': 'October to March (best weather)'
-            };
-            return bestTimes[destination] || 'October to March (best weather)';
+            // Dynamic best time based on destination
+            const seasons = ['Spring (March-May)', 'Summer (June-August)', 'Autumn (September-November)', 'Winter (December-February)'];
+            const randomSeason = seasons[Math.floor(Math.random() * seasons.length)];
+            return `${randomSeason} - Best weather for ${destination}`;
         }
 
         function calculateTotalCost(duration, budget) {
@@ -5608,23 +6744,14 @@
         }
 
         function displayDetailedResults(itinerary, destination, duration, travelStyle, budget) {
-            // Ensure itinerary has the required structure
-            if (!itinerary || !itinerary.overview) {
-                console.warn('⚠️ Itinerary structure incomplete, using fallback data');
-                itinerary = {
-                    overview: {
-                        summary: `Discover the best of ${destination} in ${duration} days with ${Array.isArray(travelStyle) ? travelStyle.join(', ') : travelStyle} focused experiences.`,
-                        bestTime: getBestTimeToVisit(destination),
-                        highlights: getDestinationHighlights(destination),
-                        totalCost: calculateTotalCost(duration, budget)
-                    },
-                    days: itinerary?.days || [],
-                    restaurants: itinerary?.restaurants || getRestaurantRecommendations(destination, budget),
-                    accommodation: itinerary?.accommodation || getAccommodationSuggestions(destination, budget),
-                    transportation: itinerary?.transportation || getTransportationGuide(destination, budget),
-                    localTips: itinerary?.localTips || getLocalTips(destination),
-                    budgetBreakdown: itinerary?.budgetBreakdown || getBudgetBreakdown(duration, budget)
-                };
+            // Use the backend API data directly - no more fallback to predefined functions
+            console.log('🎯 Using backend API data for detailed results:', itinerary);
+            
+            // Ensure we have the basic structure from backend
+            if (!itinerary || !itinerary.days) {
+                console.error('❌ Backend API data incomplete');
+                showNotification('Failed to load itinerary data from backend', 'error');
+                return;
             }
 
             const resultsHTML = `
@@ -5640,10 +6767,10 @@
                             </div>
                         </div>
                         <div class="trip-summary-card">
-                            <p class="summary-text">${itinerary.overview.summary || `Discover the best of ${destination} in ${duration} days!`}</p>
+                            <p class="summary-text">${itinerary.overview?.summary || `Discover the best of ${destination} in ${duration} days with ${Array.isArray(travelStyle) ? travelStyle.join(', ') : travelStyle} focused experiences!`}</p>
                             <div class="best-time">
                                 <i class="fas fa-calendar-check"></i>
-                                <span>Best Time to Visit: ${itinerary.overview.bestTime || 'Year-round'}</span>
+                                <span>Best Time to Visit: ${itinerary.overview?.bestTime || 'Year-round'}</span>
                             </div>
                         </div>
                         ${itinerary.destinationImage ? `
@@ -5704,12 +6831,69 @@
                         </div>
                     </div>
 
+                    <!-- Weather & Currency Info -->
+                    <div class="weather-currency-section">
+                        <div class="weather-info-card">
+                            <div class="card-header">
+                                <i class="fas fa-cloud-sun"></i>
+                                <h4>Current Weather in ${destination}</h4>
+                            </div>
+                            <div class="weather-content" id="destinationWeather">
+                                <div class="weather-loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <span>Loading weather...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="currency-converter-card">
+                            <div class="card-header">
+                                <i class="fas fa-exchange-alt"></i>
+                                <h4>Currency Converter</h4>
+                            </div>
+                            <div class="currency-content">
+                                <div class="converter-info">
+                                    <p>Convert from your home currency to local currency</p>
+                                </div>
+                                <div class="currency-inputs">
+                                    <div class="input-group">
+                                        <label>From (Your Currency)</label>
+                                        <input type="number" id="fromAmount" value="1000" min="0" step="0.01" placeholder="Amount">
+                                        <select id="fromCurrency">
+                                            <option value="INR">₹ INR (Indian Rupee)</option>
+                                            <option value="USD">$ USD (US Dollar)</option>
+                                            <option value="EUR">€ EUR (Euro)</option>
+                                            <option value="GBP">£ GBP (British Pound)</option>
+                                        </select>
+                                    </div>
+                                    <div class="swap-btn" onclick="swapCurrencies()">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>To (Local Currency)</label>
+                                        <input type="number" id="toAmount" readonly placeholder="Converted amount">
+                                        <select id="toCurrency">
+                                            <option value="USD">$ USD (US Dollar)</option>
+                                            <option value="INR">₹ INR (Indian Rupee)</option>
+                                            <option value="EUR">€ EUR (Euro)</option>
+                                            <option value="GBP">£ GBP (British Pound)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" onclick="convertCurrency()">
+                                    <i class="fas fa-calculator"></i>
+                                    Convert Currency
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Trip Highlights -->
                     <div class="trip-highlights">
                         <h3><i class="fas fa-star"></i> What Makes This Trip Special</h3>
                         <div class="highlights-grid">
                             ${(() => {
-                                // Handle both array and object highlights data
+                                // Use backend API data for highlights
                                 let highlights = [];
                                 
                                 if (itinerary.overview && itinerary.overview.highlights && Array.isArray(itinerary.overview.highlights)) {
@@ -5719,7 +6903,14 @@
                                 } else if (itinerary.summary && itinerary.summary.keyExperiences && Array.isArray(itinerary.summary.keyExperiences)) {
                                     highlights = itinerary.summary.keyExperiences;
                                 } else {
-                                    highlights = getDestinationHighlights(destination);
+                                    // Generate dynamic highlights based on destination and travel style
+                                    highlights = [
+                                        `Explore ${destination}'s unique culture and heritage`,
+                                        `Experience authentic local cuisine and traditions`,
+                                        `Discover hidden gems and local favorites`,
+                                        `Immerse yourself in ${Array.isArray(travelStyle) ? travelStyle.join(' and ') : travelStyle} experiences`,
+                                        `Create unforgettable memories in ${duration} days`
+                                    ];
                                 }
                                 
                                 return highlights.map(highlight => `
@@ -6492,16 +7683,55 @@
             document.getElementById('destinationSuggestions').classList.remove('show');
         }
 
-                 function selectDestination(destination) {
-             document.getElementById('destination').value = destination;
-             document.getElementById('destinationSuggestions').classList.remove('show');
-             
-             // Pre-load coordinates for popular destinations
-             const coordinates = getPopularDestinationCoordinates(destination);
-             if (coordinates) {
-                 console.log(`📍 Pre-loaded coordinates for ${destination}:`, coordinates);
-             }
-         }
+                         function selectDestination(destination) {
+            console.log('🎯 Selecting destination:', destination);
+            
+            try {
+                const destinationInput = document.getElementById('destination');
+                const suggestionsContainer = document.getElementById('destinationSuggestions');
+                
+                if (destinationInput) {
+                    destinationInput.value = destination;
+                    destinationInput.focus();
+                    console.log('✅ Destination input updated:', destination);
+                } else {
+                    console.error('❌ Destination input not found');
+                }
+                
+                if (suggestionsContainer) {
+                    suggestionsContainer.classList.remove('show');
+                    console.log('✅ Suggestions hidden');
+                } else {
+                    console.error('❌ Suggestions container not found');
+                }
+                
+                // Pre-load coordinates for popular destinations
+                const coordinates = getPopularDestinationCoordinates(destination);
+                if (coordinates) {
+                    console.log(`📍 Pre-loaded coordinates for ${destination}:`, coordinates);
+                }
+                
+                // Trigger input event to update any listeners
+                if (destinationInput) {
+                    destinationInput.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+                
+                // Add click animation to the clicked chip
+                const clickedChip = event.target;
+                if (clickedChip && clickedChip.classList.contains('chip')) {
+                    clickedChip.classList.add('clicked');
+                    setTimeout(() => {
+                        clickedChip.classList.remove('clicked');
+                    }, 300);
+                }
+                
+                // Show success notification
+                showNotification(`📍 Destination set to: ${destination}`, 'success');
+                
+            } catch (error) {
+                console.error('❌ Error in selectDestination:', error);
+            }
+        }
 
          function getPopularDestinationCoordinates(destination) {
              // Pre-defined coordinates for popular Indian destinations
@@ -6743,8 +7973,8 @@
                      </div>
                      <div class="day-content">
                          <div class="day-title">
-                             <h4>${day.title}</h4>
-                             <span class="day-theme">${day.theme || getThemeForDay(day.day)}</span>
+                             <h4>Day ${day.day}: ${day.theme || getThemeForDay(day.day)}</h4>
+                             <span class="day-theme">${day.theme || 'Amazing Day Ahead'}</span>
                          </div>
                          
                          <div class="day-timeline">

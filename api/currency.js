@@ -1,7 +1,8 @@
 const axios = require('axios');
+const config = require('../config');
 
 // Currency API configuration
-const CURRENCY_API_KEY = process.env.EXCHANGE_RATE_API_KEY || 'your-exchange-rate-api-key';
+const CURRENCY_API_KEY = config.EXCHANGE_RATE_API_KEY;
 const CURRENCY_BASE_URL = 'https://v6.exchangerate-api.com/v6';
 
 // Fallback exchange rates (updated periodically)

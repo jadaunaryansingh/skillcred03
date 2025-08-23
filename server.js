@@ -8,18 +8,21 @@ const compression = require('compression');
 const morgan = require('morgan');
 require('dotenv').config();
 
+const config = require('./config');
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = config.PORT;
 
 // Security middleware
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            styleSrc: ["'self'", "'unsafe-inline'"],
-            scriptSrc: ["'self'"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://fonts.googleapis.com"],
+            scriptSrc: ["'self'", "'unsafe-inline'"],
+            scriptSrcAttr: ["'unsafe-inline'"],
             imgSrc: ["'self'", "data:", "https:"],
-            connectSrc: ["'self'", "https:"]
+            connectSrc: ["'self'", "https:"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"]
         }
     }
 }));
@@ -47,6 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Import API routes
 const { generateItinerary, searchPexelsImage, geocodeLocation, calculateDistance } = require('./api/itinerary');
 const { generateActivitiesWithAI } = require('./api/ai-activities');
+const { generatePopularPacks, generateAIReviews, generateDestinationSuggestions } = require('./api/ai-content');
 const { 
     registerUser, 
     loginUser, 
@@ -248,6 +252,44 @@ app.post('/api/currency/budget', async (req, res) => {
     } catch (error) {
         console.error('Multi-currency budget error:', error);
         res.status(500).json({ error: error.message });
+    }
+});
+
+// ===== AI CONTENT ENDPOINTS =====
+
+// Generate popular trip packs
+app.get('/api/ai/popular-packs', async (req, res) => {
+    try {
+        const { destination = 'India', count = 6 } = req.query;
+        const result = await generatePopularPacks(destination, parseInt(count));
+        res.json(result);
+    } catch (error) {
+        console.error('Popular packs generation error:', error);
+        res.status(500).json({ error: 'Failed to generate popular packs' });
+    }
+});
+
+// Generate AI reviews
+app.get('/api/ai/reviews', async (req, res) => {
+    try {
+        const { count = 5 } = req.query;
+        const result = await generateAIReviews(parseInt(count));
+        res.json(result);
+    } catch (error) {
+        console.error('AI reviews generation error:', error);
+        res.status(500).json({ error: 'Failed to generate reviews' });
+    }
+});
+
+// Generate destination suggestions
+app.get('/api/ai/suggestions', async (req, res) => {
+    try {
+        const { query = '', limit = 6 } = req.query;
+        const result = await generateDestinationSuggestions(query, parseInt(limit));
+        res.json(result);
+    } catch (error) {
+        console.error('Destination suggestions error:', error);
+        res.status(500).json({ error: 'Failed to generate suggestions' });
     }
 });
 
@@ -494,5 +536,5 @@ app.listen(PORT, () => {
     console.log(`🚀 Professional Travel Itinerary Server v2.0.0 running on port ${PORT}`);
     console.log(`📱 Features: AI Planning, Auth, Weather, Currency, Export`);
     console.log(`🔒 Security: Helmet, Rate Limiting, CORS enabled`);
-    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+            console.log(`🌐 Environment: ${config.NODE_ENV}`);
 });

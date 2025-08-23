@@ -1,7 +1,8 @@
 const axios = require('axios');
+const config = require('../config');
 
 // Weather API configuration
-const WEATHER_API_KEY = process.env.OPENWEATHER_API_KEY || 'your-openweather-api-key';
+const WEATHER_API_KEY = config.OPENWEATHER_API_KEY;
 const WEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 /**
