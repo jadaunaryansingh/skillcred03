@@ -9,8 +9,7 @@
     <title>🚀 Professional Travel Itinerary App v2.0.0</title>
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Simple Google Fonts - One method only -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     
     <!-- Simple font forcing -->
     <style>
@@ -9114,70 +9113,11 @@
             }
         });
 
-        // Enhanced font loading with better fallback system
-        function loadFontsWithFallback() {
-            // Start with system fonts immediately
-            document.documentElement.classList.add('fonts-loading');
-            
-            // Try to load Inter font from Google Fonts
-            const interFont = new FontFace('Inter', 'url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2)');
-            
-            interFont.load().then(function(loadedFont) {
-                // Font loaded successfully
-                document.fonts.add(loadedFont);
-                document.documentElement.classList.remove('fonts-loading');
-                document.documentElement.classList.add('fonts-loaded');
-                console.log('✅ Inter font loaded successfully from Google Fonts');
-                
-                // Force apply the font
-                document.body.style.fontFamily = 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
-            }).catch(function(error) {
-                // Font failed to load, use system fonts
-                console.warn('⚠️ Inter font failed to load, using system fonts:', error);
-                document.documentElement.classList.remove('fonts-loading');
-                document.documentElement.classList.add('fonts-fallback');
-                
-                // Update CSS variables and force system fonts
-                document.documentElement.style.setProperty('--font-primary', '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif');
-                document.body.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
-            });
-        }
 
-        // Block incorrect font requests
-        function blockIncorrectFonts() {
-            // Override any font requests to the wrong path
-            const originalFetch = window.fetch;
-            window.fetch = function(url, options) {
-                if (typeof url === 'string' && url.includes('~@/assets/fonts/')) {
-                    console.log('🚫 Blocking incorrect font request:', url);
-                    return Promise.reject(new Error('Incorrect font path blocked'));
-                }
-                return originalFetch(url, options);
-            };
-        }
 
-        // Font loading error handler
-        document.fonts.ready.then(function() {
-            console.log('✅ All fonts loaded successfully');
-        }).catch(function(error) {
-            console.warn('⚠️ Some fonts failed to load, using system fallbacks:', error);
-        });
-
-        // Handle font loading on page load
+        // Simple font loading - no complex logic
         document.addEventListener('DOMContentLoaded', function() {
-            // Block incorrect font requests first
-            blockIncorrectFonts();
-            
-            // Load fonts with fallback
-            loadFontsWithFallback();
-            
-            // Fallback check after a delay
-            setTimeout(function() {
-                if (!document.fonts.check('1em Inter')) {
-                    console.log('🌐 Inter font not available, using system fonts');
-                    document.documentElement.classList.add('fonts-fallback');
-                }
-            }, 2000);
+            console.log('🚀 Page loaded with system fonts');
         });
     </script>
 
