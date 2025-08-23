@@ -15,31 +15,24 @@
     <style>
         /* Font-face declarations removed for simplicity */
         
-        /* Aggressive font blocking - prevent any external font requests */
-        @font-face {
-            font-family: 'Inter';
-            src: local('Arial'), local('Helvetica'), local('sans-serif') !important;
-            font-display: block !important;
-        }
-        
-        /* Block specific weights that are causing issues */
-        @font-face {
-            font-family: 'Inter';
-            font-weight: 400;
-            src: local('Arial'), local('Helvetica'), local('sans-serif') !important;
-            font-display: block !important;
-        }
-        
-        @font-face {
-            font-family: 'Inter';
-            font-weight: 600;  
-            src: local('Arial'), local('Helvetica'), local('sans-serif') !important;
-            font-display: block !important;
-        }
-        
-        /* Use system fonts instead of trying to load Inter */
+        /* Simple system fonts - guaranteed to work */
         * {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+            font-weight: normal !important;
+        }
+        
+        /* Ensure text is visible with proper font weights */
+        body, html {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+            font-size: 16px !important;
+            font-weight: 400 !important;
+            color: #333 !important;
+        }
+        
+        /* Force visible fonts for all elements */
+        h1, h2, h3, h4, h5, h6, p, span, div, label, button, input {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+            color: inherit !important;
         }
     </style>
     <style>
