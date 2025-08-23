@@ -1,8 +1,5 @@
-# Handle client-side routing
+# Handle client-side routing - this fixes the "Page not found" error!
 /*    /index.html   200
-
-# API redirects (if you have a separate backend)
-/api/*  https://your-backend-server.com/api/:splat  200
 
 # Security headers
 /*

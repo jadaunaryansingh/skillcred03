@@ -1,18 +1,14 @@
 [build]
-  # Build command - since this is a Node.js app, we'll use a custom build
-  command = "npm run build"
+  # Build command - simple echo since this is a static site
+  command = "echo 'Static files ready'"
   
   # Publish directory - where the built files will be served from
   publish = "public"
   
-  # Functions directory for serverless functions (if needed)
-  functions = "api"
-
-[build.environment]
   # Node.js version
   NODE_VERSION = "18"
 
-# Redirects for SPA routing
+# Redirects for SPA routing - this is the key fix!
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -26,13 +22,6 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-# API routes - redirect to your backend server
-[[redirects]]
-  from = "/api/*"
-  to = "https://your-backend-server.com/api/:splat"
-  status = 200
-  force = true
 
 # Environment variables
 [context.production.environment]
