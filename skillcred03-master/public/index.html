@@ -76,7 +76,7 @@
             src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
         }
         
-        /* Force Inter font usage */
+        /* Force Inter font usage with proper fallbacks */
         body, * {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
         }
@@ -91,6 +91,40 @@
             font-family: 'Inter', sans-serif !important;
             visibility: hidden;
             position: absolute;
+        }
+        
+        /* Override any incorrect font paths */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Inter'), 
+                 url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2'),
+                 url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: local('Inter'), 
+                 url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2'),
+                 url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff') format('woff');
+        }
+        
+        /* Block incorrect font paths */
+        @font-face {
+            font-family: 'Inter';
+            src: url('~@/assets/fonts/Inter-Regular.ttf') format('truetype');
+            font-display: block;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('~@/assets/fonts/Inter-SemiBold.ttf') format('truetype');
+            font-display: block;
         }
     </style>
     <style>
@@ -9169,7 +9203,7 @@
             // Start with system fonts immediately
             document.documentElement.classList.add('fonts-loading');
             
-            // Try to load Inter font
+            // Try to load Inter font from Google Fonts
             const interFont = new FontFace('Inter', 'url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2)');
             
             interFont.load().then(function(loadedFont) {
@@ -9177,16 +9211,33 @@
                 document.fonts.add(loadedFont);
                 document.documentElement.classList.remove('fonts-loading');
                 document.documentElement.classList.add('fonts-loaded');
-                console.log('✅ Inter font loaded successfully');
+                console.log('✅ Inter font loaded successfully from Google Fonts');
+                
+                // Force apply the font
+                document.body.style.fontFamily = 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
             }).catch(function(error) {
                 // Font failed to load, use system fonts
                 console.warn('⚠️ Inter font failed to load, using system fonts:', error);
                 document.documentElement.classList.remove('fonts-loading');
                 document.documentElement.classList.add('fonts-fallback');
                 
-                // Update CSS variables
+                // Update CSS variables and force system fonts
                 document.documentElement.style.setProperty('--font-primary', '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif');
+                document.body.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
             });
+        }
+
+        // Block incorrect font requests
+        function blockIncorrectFonts() {
+            // Override any font requests to the wrong path
+            const originalFetch = window.fetch;
+            window.fetch = function(url, options) {
+                if (typeof url === 'string' && url.includes('~@/assets/fonts/')) {
+                    console.log('🚫 Blocking incorrect font request:', url);
+                    return Promise.reject(new Error('Incorrect font path blocked'));
+                }
+                return originalFetch(url, options);
+            };
         }
 
         // Font loading error handler
@@ -9198,6 +9249,10 @@
 
         // Handle font loading on page load
         document.addEventListener('DOMContentLoaded', function() {
+            // Block incorrect font requests first
+            blockIncorrectFonts();
+            
+            // Load fonts with fallback
             loadFontsWithFallback();
             
             // Fallback check after a delay
