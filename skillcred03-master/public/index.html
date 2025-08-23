@@ -11,6 +11,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Fallback font loading with better error handling -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        /* Immediate fallback to system fonts */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        /* Apply Inter when it loads */
+        .fonts-loaded body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        /* Font loading states */
+        .fonts-loading {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        .fonts-fallback {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        /* Ensure smooth font transitions */
+        * {
+            font-display: swap;
+        }
+    </style>
     <style>
         /* ===== RESET & BASE STYLES ===== */
         * {
@@ -9080,6 +9109,31 @@
             }
         });
 
+        // Enhanced font loading with better fallback system
+        function loadFontsWithFallback() {
+            // Start with system fonts immediately
+            document.documentElement.classList.add('fonts-loading');
+            
+            // Try to load Inter font
+            const interFont = new FontFace('Inter', 'url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2)');
+            
+            interFont.load().then(function(loadedFont) {
+                // Font loaded successfully
+                document.fonts.add(loadedFont);
+                document.documentElement.classList.remove('fonts-loading');
+                document.documentElement.classList.add('fonts-loaded');
+                console.log('✅ Inter font loaded successfully');
+            }).catch(function(error) {
+                // Font failed to load, use system fonts
+                console.warn('⚠️ Inter font failed to load, using system fonts:', error);
+                document.documentElement.classList.remove('fonts-loading');
+                document.documentElement.classList.add('fonts-fallback');
+                
+                // Update CSS variables
+                document.documentElement.style.setProperty('--font-primary', '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif');
+            });
+        }
+
         // Font loading error handler
         document.fonts.ready.then(function() {
             console.log('✅ All fonts loaded successfully');
@@ -9087,13 +9141,17 @@
             console.warn('⚠️ Some fonts failed to load, using system fallbacks:', error);
         });
 
-        // Handle font loading errors gracefully
+        // Handle font loading on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if Inter font is available
-            if (!document.fonts.check('1em Inter')) {
-                console.log('🌐 Inter font not available, using system fonts');
-                document.documentElement.style.setProperty('--font-primary', '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif');
-            }
+            loadFontsWithFallback();
+            
+            // Fallback check after a delay
+            setTimeout(function() {
+                if (!document.fonts.check('1em Inter')) {
+                    console.log('🌐 Inter font not available, using system fonts');
+                    document.documentElement.classList.add('fonts-fallback');
+                }
+            }, 2000);
         });
     </script>
 
