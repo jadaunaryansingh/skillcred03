@@ -372,27 +372,27 @@
         }
 
                  /* ===== HERO SECTION ===== */
-                 .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+         .hero {
+             min-height: 100vh;
+             display: flex;
+             align-items: center;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
-            position: relative;
-            overflow: hidden;
-        }
+             position: relative;
+             overflow: hidden;
+         }
 
-                 .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
+         .hero::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             background: 
                 radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(79, 172, 254, 0.1) 0%, transparent 50%);
-        }
+         }
 
          .hero::after {
              content: '';
@@ -440,17 +440,17 @@
             border-color: var(--border-secondary);
         }
 
-                         .hero-title {
-            font-size: clamp(3.5rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: var(--spacing-lg);
+                 .hero-title {
+             font-size: clamp(3.5rem, 8vw, 6rem);
+             font-weight: 900;
+             line-height: 1.1;
+             margin-bottom: var(--spacing-lg);
             background: linear-gradient(135deg, #ffffff 0%, #667eea 50%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;
             text-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
-        }
+         }
 
          .hero-subtitle {
              font-size: 1.4rem;
@@ -469,9 +469,9 @@
              animation: pulse 2s ease-in-out infinite;
          }
 
-                 .tagline-text {
+         .tagline-text {
             background: linear-gradient(135deg, #ffffff, #667eea, #f093fb, #4facfe);
-            -webkit-background-clip: text;
+             -webkit-background-clip: text;
              -webkit-text-fill-color: transparent;
              background-clip: text;
              font-size: 1.3rem;
@@ -3301,22 +3301,22 @@
              margin-bottom: var(--spacing-3xl);
          }
 
-                 .search-title {
+         .search-title {
             color: var(--white);
-            font-weight: 800;
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            margin-bottom: var(--spacing-md);
-            line-height: 1.2;
-        }
+             font-weight: 800;
+             font-size: clamp(1.75rem, 4vw, 2.5rem);
+             margin-bottom: var(--spacing-md);
+             line-height: 1.2;
+         }
 
-        .search-subtitle {
+         .search-subtitle {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
+             font-size: 1.1rem;
+             font-weight: 400;
+             max-width: 600px;
+             margin: 0 auto;
+             line-height: 1.5;
+         }
 
          .professional-search-form {
              position: relative;
@@ -3333,39 +3333,39 @@
              flex-direction: column;
          }
 
-                 .form-label {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            font-weight: 600;
+         .form-label {
+             display: flex;
+             align-items: center;
+             gap: var(--spacing-sm);
+             font-weight: 600;
             color: var(--white);
-            font-size: 1rem;
-            margin-bottom: var(--spacing-lg);
-        }
+             font-size: 1rem;
+             margin-bottom: var(--spacing-lg);
+         }
 
-                 .form-label i {
+         .form-label i {
             color: var(--white);
-            font-size: 1.1rem;
-        }
+             font-size: 1.1rem;
+         }
 
          .input-container {
              position: relative;
          }
 
-                 .form-input {
-            width: 100%;
-            padding: var(--spacing-lg);
+         .form-input {
+             width: 100%;
+             padding: var(--spacing-lg);
             border: 2px solid var(--border-primary);
-            border-radius: var(--radius-lg);
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: var(--transition);
+             border-radius: var(--radius-lg);
+             font-size: 1.1rem;
+             font-weight: 500;
+             transition: var(--transition);
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             color: var(--text-primary);
-            box-sizing: border-box;
+             box-sizing: border-box;
             box-shadow: var(--glass-shadow);
-        }
+         }
 
          .form-input:focus {
              outline: none;
@@ -3383,39 +3383,39 @@
              position: relative;
          }
 
-                 .form-select {
-            width: 100%;
-            padding: var(--spacing-lg);
+         .form-select {
+             width: 100%;
+             padding: var(--spacing-lg);
             border: 2px solid var(--border-primary);
-            border-radius: var(--radius-lg);
-            font-size: 1.1rem;
-            font-weight: 500;
+             border-radius: var(--radius-lg);
+             font-size: 1.1rem;
+             font-weight: 500;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             color: var(--text-primary);
-            cursor: pointer;
-            transition: var(--transition);
-            appearance: none;
-            box-sizing: border-box;
+             cursor: pointer;
+             transition: var(--transition);
+             appearance: none;
+             box-sizing: border-box;
             box-shadow: var(--glass-shadow);
-        }
+         }
 
-                 .form-select:focus {
-            outline: none;
+         .form-select:focus {
+             outline: none;
             border-color: var(--white);
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.2);
-        }
+         }
 
-                 .select-arrow {
-            position: absolute;
-            right: var(--spacing-lg);
-            top: 50%;
-            transform: translateY(-50%);
+         .select-arrow {
+             position: absolute;
+             right: var(--spacing-lg);
+             top: 50%;
+             transform: translateY(-50%);
             color: rgba(255, 255, 255, 0.7);
-            pointer-events: none;
-            font-size: 1rem;
-        }
+             pointer-events: none;
+             font-size: 1rem;
+         }
 
          .custom-input-group {
              display: flex;
@@ -3444,13 +3444,13 @@
              margin-top: var(--spacing-lg);
          }
 
-                 .chips-label {
+         .chips-label {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            display: block;
-        }
+             font-size: 0.9rem;
+             font-weight: 600;
+             margin-bottom: var(--spacing-sm);
+             display: block;
+         }
 
          .chips-container {
              display: flex;
@@ -3458,23 +3458,23 @@
              gap: var(--spacing-sm);
          }
 
-                 .chip {
+         .chip {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-primary);
             color: var(--text-primary);
-            padding: var(--spacing-xs) var(--spacing-md);
-            border-radius: var(--radius-2xl);
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
+             padding: var(--spacing-xs) var(--spacing-md);
+             border-radius: var(--radius-2xl);
+             font-size: 0.9rem;
+             font-weight: 500;
+             cursor: pointer;
+             transition: var(--transition);
             box-shadow: var(--glass-shadow);
-        }
+         }
 
-                 .chip:hover {
+         .chip:hover {
             background: rgba(255, 255, 255, 0.3);
-            color: var(--white);
+             color: var(--white);
             border-color: var(--white);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
@@ -3493,7 +3493,7 @@
             0% { transform: scale(1); }
             50% { transform: scale(0.95); }
             100% { transform: scale(1); }
-        }
+         }
 
          /* Travel Style Grid */
          .travel-style-grid {
@@ -3606,35 +3606,118 @@
              border-color: var(--secondary);
          }
 
+         /* Format Toggle Styles */
+         .format-toggle-container {
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             background: var(--white);
+             border: 2px solid var(--gray-200);
+             border-radius: var(--radius-lg);
+             padding: var(--spacing-lg);
+             margin-bottom: var(--spacing-lg);
+             gap: var(--spacing-md);
+         }
+
+         .format-toggle-label {
+             display: flex;
+             align-items: center;
+             gap: var(--spacing-sm);
+             font-weight: 600;
+             color: var(--gray-700);
+             font-size: 0.95rem;
+         }
+
+         .format-toggle-label i {
+             color: var(--primary);
+         }
+
+         .toggle-switch {
+             position: relative;
+             display: inline-block;
+             width: 200px;
+             height: 40px;
+         }
+
+         .toggle-input {
+             opacity: 0;
+             width: 0;
+             height: 0;
+         }
+
+         .toggle-label {
+             position: absolute;
+             cursor: pointer;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             background: var(--gray-200);
+             border-radius: 20px;
+             transition: var(--transition);
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             padding: 0 var(--spacing-sm);
+             font-size: 0.8rem;
+             font-weight: 600;
+             color: var(--gray-600);
+         }
+
+         .toggle-input:checked + .toggle-label {
+             background: linear-gradient(135deg, var(--primary), var(--purple));
+             color: var(--white);
+         }
+
+         .toggle-text-left,
+         .toggle-text-right {
+             transition: var(--transition);
+         }
+
+         .toggle-input:checked ~ .toggle-text-left {
+             opacity: 0.7;
+         }
+
+         .toggle-input:checked ~ .toggle-text-right {
+             opacity: 1;
+         }
+
+         .format-info {
+             font-size: 0.85rem;
+             color: var(--gray-600);
+             text-align: center;
+             flex: 1;
+         }
+
          /* Search Action Button */
          .search-action {
              text-align: center;
          }
 
-                 .professional-search-btn {
+         .professional-search-btn {
             background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
             color: var(--text-primary);
-            border: none;
-            padding: var(--spacing-lg) var(--spacing-3xl);
-            border-radius: var(--radius-lg);
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            min-width: 250px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--spacing-sm);
+             border: none;
+             padding: var(--spacing-lg) var(--spacing-3xl);
+             border-radius: var(--radius-lg);
+             font-size: 1.2rem;
+             font-weight: 700;
+             cursor: pointer;
+             transition: var(--transition);
+             position: relative;
+             overflow: hidden;
+             min-width: 250px;
+             display: inline-flex;
+             align-items: center;
+             justify-content: center;
+             gap: var(--spacing-sm);
             box-shadow: var(--shadow-lg);
-        }
+         }
 
-                 .professional-search-btn:hover {
+         .professional-search-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
-        }
+         }
 
          .btn-shimmer {
              position: absolute;
@@ -3650,23 +3733,23 @@
              left: 100%;
          }
 
-                 /* Suggestions Dropdown */
-        .suggestions-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
+         /* Suggestions Dropdown */
+         .suggestions-dropdown {
+             position: absolute;
+             top: 100%;
+             left: 0;
+             right: 0;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             border: 2px solid var(--border-primary);
-            border-top: none;
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-            display: none;
+             border-top: none;
+             border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+             max-height: 200px;
+             overflow-y: auto;
+             z-index: 1000;
+             display: none;
             box-shadow: var(--glass-shadow);
-        }
+         }
 
          .suggestions-dropdown.show {
              display: block;
@@ -3744,6 +3827,312 @@
          .leaflet-popup-content {
              margin: 12px 16px !important;
              font-family: 'Inter', sans-serif !important;
+         }
+
+         /* ===== PROFESSIONAL TRAVEL PLANNER STYLES ===== */
+         .trip-results-container {
+             margin-top: var(--spacing-2xl);
+             padding: var(--spacing-2xl);
+             background: var(--white);
+             border-radius: var(--radius-xl);
+             box-shadow: var(--shadow-lg);
+             border: 2px solid var(--gray-200);
+         }
+
+         .results-header {
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             margin-bottom: var(--spacing-2xl);
+             padding-bottom: var(--spacing-xl);
+             border-bottom: 2px solid var(--gray-200);
+         }
+
+         .header-content h2 {
+             color: var(--gray-800);
+             font-size: 2rem;
+             font-weight: 700;
+             margin-bottom: var(--spacing-sm);
+             display: flex;
+             align-items: center;
+             gap: var(--spacing-md);
+         }
+
+         .header-content h2 i {
+             color: var(--primary);
+             font-size: 1.8rem;
+         }
+
+         .results-subtitle {
+             color: var(--gray-600);
+             font-size: 1.1rem;
+             font-weight: 500;
+         }
+
+         .header-actions {
+             display: flex;
+             gap: var(--spacing-md);
+         }
+
+         .btn-secondary {
+             background: var(--gray-100);
+             color: var(--gray-700);
+             border: 2px solid var(--gray-300);
+             padding: var(--spacing-md) var(--spacing-xl);
+             border-radius: var(--radius-lg);
+             font-weight: 600;
+             cursor: pointer;
+             transition: var(--transition);
+             display: flex;
+             align-items: center;
+             gap: var(--spacing-sm);
+         }
+
+         .btn-secondary:hover {
+             background: var(--gray-200);
+             border-color: var(--gray-400);
+             transform: translateY(-2px);
+         }
+
+         .btn-primary {
+             background: linear-gradient(135deg, var(--primary), var(--purple));
+             color: var(--white);
+             border: none;
+             padding: var(--spacing-md) var(--spacing-xl);
+             border-radius: var(--radius-lg);
+             font-weight: 600;
+             cursor: pointer;
+             transition: var(--transition);
+             display: flex;
+             align-items: center;
+             gap: var(--spacing-sm);
+             box-shadow: var(--shadow-md);
+         }
+
+         .btn-primary:hover {
+             transform: translateY(-2px);
+             box-shadow: var(--shadow-lg);
+         }
+
+         .itinerary-content {
+             margin-bottom: var(--spacing-2xl);
+         }
+
+         .professional-day-card {
+             background: var(--white);
+             border: 2px solid var(--gray-200);
+             border-radius: var(--radius-xl);
+             padding: var(--spacing-2xl);
+             margin-bottom: var(--spacing-xl);
+             box-shadow: var(--shadow-md);
+             transition: var(--transition);
+         }
+
+         .professional-day-card:hover {
+             transform: translateY(-4px);
+             box-shadow: var(--shadow-lg);
+             border-color: var(--primary);
+         }
+
+         .day-header {
+             margin-bottom: var(--spacing-xl);
+             padding-bottom: var(--spacing-lg);
+             border-bottom: 2px solid var(--gray-200);
+         }
+
+         .day-title {
+             color: var(--gray-800);
+             font-size: 1.5rem;
+             font-weight: 700;
+             margin-bottom: var(--spacing-sm);
+         }
+
+         .day-meta {
+             display: flex;
+             gap: var(--spacing-lg);
+             color: var(--gray-600);
+             font-size: 0.9rem;
+         }
+
+         .day-activities {
+             display: grid;
+             gap: var(--spacing-xl);
+         }
+
+         .activity-period {
+             background: var(--gray-50);
+             border-radius: var(--radius-lg);
+             padding: var(--spacing-lg);
+             border-left: 4px solid var(--primary);
+         }
+
+         .activity-period.morning {
+             border-left-color: #fbbf24;
+         }
+
+         .activity-period.afternoon {
+             border-left-color: #f59e0b;
+         }
+
+         .activity-period.evening {
+             border-left-color: #7c3aed;
+         }
+
+         .period-header {
+             display: flex;
+             align-items: center;
+             gap: var(--spacing-md);
+             margin-bottom: var(--spacing-md);
+         }
+
+         .period-icon {
+             font-size: 1.5rem;
+         }
+
+         .period-title {
+             color: var(--gray-800);
+             font-weight: 600;
+             font-size: 1.1rem;
+             flex: 1;
+         }
+
+         .activity-time {
+             color: var(--gray-600);
+             font-size: 0.9rem;
+             background: var(--white);
+             padding: var(--spacing-xs) var(--spacing-sm);
+             border-radius: var(--radius-md);
+             border: 1px solid var(--gray-200);
+         }
+
+         .activity-details h4 {
+             color: var(--gray-800);
+             font-weight: 600;
+             margin-bottom: var(--spacing-sm);
+         }
+
+         .activity-description {
+             color: var(--gray-600);
+             line-height: 1.6;
+             margin-bottom: var(--spacing-md);
+         }
+
+         .activity-cost {
+             display: inline-block;
+             background: var(--green-100);
+             color: var(--green-700);
+             padding: var(--spacing-xs) var(--spacing-sm);
+             border-radius: var(--radius-md);
+             font-size: 0.9rem;
+             font-weight: 600;
+             margin-bottom: var(--spacing-sm);
+         }
+
+         .activity-tips {
+             background: var(--blue-100);
+             color: var(--blue-700);
+             padding: var(--spacing-md);
+             border-radius: var(--radius-md);
+             border-left: 4px solid var(--blue-500);
+             font-size: 0.9rem;
+             line-height: 1.5;
+         }
+
+         .widgets-container {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+             gap: var(--spacing-xl);
+             margin-top: var(--spacing-2xl);
+             padding-top: var(--spacing-2xl);
+             border-top: 2px solid var(--gray-200);
+         }
+
+         .weather-widget,
+         .currency-widget {
+             background: var(--gray-50);
+             border: 2px solid var(--gray-200);
+             border-radius: var(--radius-lg);
+             padding: var(--spacing-lg);
+         }
+
+         .widget-header {
+             display: flex;
+             align-items: center;
+             gap: var(--spacing-sm);
+             margin-bottom: var(--spacing-lg);
+             font-weight: 600;
+             color: var(--gray-700);
+         }
+
+         .widget-header i {
+             color: var(--primary);
+         }
+
+         .currency-input {
+             display: flex;
+             gap: var(--spacing-sm);
+             margin-bottom: var(--spacing-md);
+         }
+
+         .currency-input input,
+         .currency-input select {
+             padding: var(--spacing-sm);
+             border: 1px solid var(--gray-300);
+             border-radius: var(--radius-md);
+             font-size: 0.9rem;
+         }
+
+         .btn-small {
+             background: var(--primary);
+             color: var(--white);
+             border: none;
+             padding: var(--spacing-sm) var(--spacing-md);
+             border-radius: var(--radius-md);
+             font-weight: 600;
+             cursor: pointer;
+             transition: var(--transition);
+         }
+
+         .btn-small:hover {
+             background: var(--primary-dark);
+             transform: translateY(-1px);
+         }
+
+         .conversion-result {
+             background: var(--white);
+             padding: var(--spacing-md);
+             border-radius: var(--radius-md);
+             border: 1px solid var(--gray-200);
+             font-weight: 600;
+             color: var(--gray-700);
+         }
+
+         .raw-ai-content {
+             background: var(--gray-50);
+             border: 2px solid var(--gray-200);
+             border-radius: var(--radius-lg);
+             padding: var(--spacing-xl);
+         }
+
+         .raw-ai-content h3 {
+             color: var(--gray-800);
+             margin-bottom: var(--spacing-lg);
+         }
+
+         .ai-response {
+             background: var(--white);
+             border: 1px solid var(--gray-200);
+             border-radius: var(--radius-md);
+             padding: var(--spacing-lg);
+             overflow-x: auto;
+         }
+
+         .ai-response pre {
+             margin: 0;
+             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+             font-size: 0.85rem;
+             line-height: 1.5;
+             color: var(--gray-700);
          }
 
          .leaflet-popup-content b {
@@ -4702,7 +5091,7 @@
         }
 
         @keyframes float {
-            0%, 100% { 
+            0%, 100% {
                 transform: translate(0, 0) rotate(0deg) scale(1); 
                 opacity: 0.7;
             }
@@ -4796,6 +5185,24 @@
                         </div>
                         
                         <form id="tripForm" onsubmit="handleTripSearch(event)" class="professional-search-form">
+                            <!-- Format Toggle -->
+                            <div class="format-toggle-container">
+                                <label class="format-toggle-label">
+                                    <i class="fas fa-magic"></i>
+                                    Itinerary Format
+                                </label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="formatToggle" class="toggle-input">
+                                    <label for="formatToggle" class="toggle-label">
+                                        <span class="toggle-text-left">Standard</span>
+                                        <span class="toggle-text-right">Professional</span>
+                                    </label>
+                                </div>
+                                <div class="format-info">
+                                    <span id="formatInfo">Standard: Basic itinerary with activities</span>
+                                </div>
+                            </div>
+                            
                             <div class="form-grid">
                                 <!-- Destination Field -->
                                 <div class="form-group destination-group">
@@ -5389,7 +5796,7 @@
                             <div class="form-group">
                                 <label for="reviewerName">Your Name *</label>
                                 <input type="text" id="reviewerName" name="reviewerName" required>
-                            </div>
+                        </div>
                             <div class="form-group">
                                 <label for="reviewerType">Traveler Type</label>
                                 <select id="reviewerType" name="reviewerType">
@@ -5425,9 +5832,9 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit Review</button>
                     </form>
+                    </div>
                 </div>
-            </div>
-            
+                
             <!-- Reviews Display -->
             <div class="reviews-container">
                 <div class="reviews-header">
@@ -5437,8 +5844,8 @@
                         <button class="filter-btn" data-filter="5">5★</button>
                         <button class="filter-btn" data-filter="4">4★</button>
                         <button class="filter-btn" data-filter="3">3★</button>
+                        </div>
                     </div>
-                </div>
                 
                 <div class="reviews-grid" id="reviewsGrid">
                     <!-- Reviews will be loaded here dynamically -->
@@ -5456,7 +5863,7 @@
                 <p class="section-subtitle">
                     Start planning your dream trip today with our flexible pricing options.
                 </p>
-            </div>
+                        </div>
             
             <div class="pricing-grid">
                 <div class="pricing-card">
@@ -5466,8 +5873,8 @@
                             <span class="currency">₹</span>
                             <span class="amount">0</span>
                             <span class="period">/month</span>
-                        </div>
                     </div>
+                </div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> 3 AI-generated itineraries per month</li>
                         <li><i class="fas fa-check"></i> Basic destination recommendations</li>
@@ -5575,7 +5982,7 @@
         </div>
     </section>
 
-    <!-- Community Trips Section -->
+     <!-- Community Trips Section -->
      <section class="community-trips">
          <div class="container">
              <div class="section-header">
@@ -5721,11 +6128,11 @@
                 // Only process valid selectors
                 if (href && href.length > 1 && /^#[a-zA-Z][a-zA-Z0-9_-]*$/.test(href)) {
                     const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                     }
                 }
             });
@@ -6111,6 +6518,224 @@
                 const fallbackItinerary = createDetailedItinerary(destination, duration, travelStyles, budget);
                 displayDetailedResults(fallbackItinerary, destination, duration, travelStyles, budget);
             }
+        }
+
+        function displayProfessionalResults(apiItinerary, destination, duration, budget) {
+            // Handle professional travel planner format from Google AI
+            console.log('🎯 Displaying professional travel planner results:', apiItinerary);
+            
+            // Create results container
+            const resultsContainer = document.createElement('div');
+            resultsContainer.id = 'tripResults';
+            resultsContainer.className = 'trip-results-container fade-in';
+            
+            // Create header
+            const header = document.createElement('div');
+            header.className = 'results-header';
+            header.innerHTML = `
+                <div class="header-content">
+                    <h2 class="results-title">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Professional Travel Plan for ${destination}
+                    </h2>
+                    <p class="results-subtitle">
+                        ${duration} days • ${getBudgetDisplay(budget)} • Generated by Google AI
+                    </p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary" onclick="exportItinerary()">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                    <button class="btn-primary" onclick="shareItinerary()">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                </div>
+            `;
+            
+            // Create itinerary content
+            const itineraryContent = document.createElement('div');
+            itineraryContent.className = 'itinerary-content';
+            
+            // Display the AI-generated content
+            if (apiItinerary.dailyPlans && Array.isArray(apiItinerary.dailyPlans)) {
+                // Use the dailyPlans structure
+                apiItinerary.dailyPlans.forEach((day, index) => {
+                    const dayElement = createProfessionalDayElement(day, index + 1, destination);
+                    itineraryContent.appendChild(dayElement);
+                });
+            } else if (apiItinerary.days && Array.isArray(apiItinerary.days)) {
+                // Use the days structure
+                apiItinerary.days.forEach((day, index) => {
+                    const dayElement = createProfessionalDayElement(day, index + 1, destination);
+                    itineraryContent.appendChild(dayElement);
+                });
+            } else {
+                // Fallback: display raw AI response
+                const rawContent = document.createElement('div');
+                rawContent.className = 'raw-ai-content';
+                rawContent.innerHTML = `
+                    <h3>AI-Generated Itinerary</h3>
+                    <div class="ai-response">
+                        <pre>${JSON.stringify(apiItinerary, null, 2)}</pre>
+                    </div>
+                `;
+                itineraryContent.appendChild(rawContent);
+            }
+            
+            // Add weather and currency widgets
+            const widgetsContainer = document.createElement('div');
+            widgetsContainer.className = 'widgets-container';
+            widgetsContainer.innerHTML = `
+                <div class="weather-widget" id="weatherWidget">
+                    <div class="widget-header">
+                        <i class="fas fa-cloud-sun"></i>
+                        <span>Weather in ${destination}</span>
+                    </div>
+                    <div class="widget-content" id="weatherContent">
+                        <div class="loading">Loading weather...</div>
+                    </div>
+                </div>
+                <div class="currency-widget" id="currencyWidget">
+                    <div class="widget-header">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Currency Converter</span>
+                    </div>
+                    <div class="widget-content">
+                        <div class="currency-input">
+                            <input type="number" id="amountInput" placeholder="Amount" value="1000">
+                            <select id="fromCurrency">
+                                <option value="INR">INR</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                            <button onclick="convertCurrency()" class="btn-small">Convert</button>
+                        </div>
+                        <div id="conversionResult" class="conversion-result"></div>
+                    </div>
+                </div>
+            `;
+            
+            // Assemble the results
+            resultsContainer.appendChild(header);
+            resultsContainer.appendChild(itineraryContent);
+            resultsContainer.appendChild(widgetsContainer);
+            
+            // Add to page
+            document.getElementById('tripSearch').appendChild(resultsContainer);
+            
+            // Load weather and currency data
+            setTimeout(() => {
+                loadDestinationWeather(destination);
+            }, 500);
+        }
+
+        function createProfessionalDayElement(day, dayNumber, destination) {
+            const dayElement = document.createElement('div');
+            dayElement.className = 'professional-day-card';
+            
+            let dayContent = '';
+            
+            if (day.morning || day.afternoon || day.evening) {
+                // Structured format
+                dayContent = `
+                    <div class="day-header">
+                        <h3 class="day-title">Day ${dayNumber}: ${day.theme || `${destination} Adventure`}</h3>
+                        <div class="day-meta">
+                            <span class="day-date">${getDayDate(dayNumber)}</span>
+                            <span class="day-weather">🌤️ Perfect for exploring</span>
+                        </div>
+                    </div>
+                    <div class="day-activities">
+                        ${createActivitySection('morning', day.morning, '🌅')}
+                        ${createActivitySection('afternoon', day.afternoon, '☀️')}
+                        ${createActivitySection('evening', day.evening, '🌆')}
+                    </div>
+                `;
+            } else if (day.activities) {
+                // Alternative format
+                dayContent = `
+                    <div class="day-header">
+                        <h3 class="day-title">Day ${dayNumber}: ${day.theme || `${destination} Adventure`}</h3>
+                    </div>
+                    <div class="day-activities">
+                        ${Object.entries(day.activities).map(([period, activities]) => 
+                            createActivitySection(period, activities, getPeriodIcon(period))
+                        ).join('')}
+                    </div>
+                `;
+            } else {
+                // Raw text format
+                dayContent = `
+                    <div class="day-header">
+                        <h3 class="day-title">Day ${dayNumber}</h3>
+                    </div>
+                    <div class="day-content">
+                        <p>${day.description || day.text || 'Activities for this day'}</p>
+                    </div>
+                `;
+            }
+            
+            dayElement.innerHTML = dayContent;
+            return dayElement;
+        }
+
+        function createActivitySection(period, activity, icon) {
+            if (!activity) return '';
+            
+            let content = '';
+            
+            if (typeof activity === 'string') {
+                content = `<p class="activity-text">${activity}</p>`;
+            } else if (activity.activity || activity.description) {
+                content = `
+                    <div class="activity-details">
+                        <h4 class="activity-title">${activity.activity || 'Activity'}</h4>
+                        <p class="activity-description">${activity.description || ''}</p>
+                        ${activity.cost ? `<span class="activity-cost">💰 ${activity.cost}</span>` : ''}
+                        ${activity.tips ? `<p class="activity-tips">💡 ${activity.tips}</p>` : ''}
+                    </div>
+                `;
+            } else if (Array.isArray(activity)) {
+                content = activity.map(item => `<p class="activity-text">${item}</p>`).join('');
+            }
+            
+            return `
+                <div class="activity-period ${period}">
+                    <div class="period-header">
+                        <span class="period-icon">${icon}</span>
+                        <h4 class="period-title">${capitalizeFirst(period)}</h4>
+                        ${activity.time ? `<span class="activity-time">${activity.time}</span>` : ''}
+                    </div>
+                    <div class="period-content">
+                        ${content}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getPeriodIcon(period) {
+            const icons = {
+                morning: '🌅',
+                afternoon: '☀️',
+                evening: '🌆',
+                night: '🌙'
+            };
+            return icons[period] || '📍';
+        }
+
+        function capitalizeFirst(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function getDayDate(dayNumber) {
+            const today = new Date();
+            const futureDate = new Date(today);
+            futureDate.setDate(today.getDate() + dayNumber - 1);
+            return futureDate.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                month: 'short', 
+                day: 'numeric' 
+            });
         }
 
         function displayEnhancedResults(apiItinerary, destination, duration, travelStyles, budget) {
@@ -7706,7 +8331,7 @@
             document.getElementById('destinationSuggestions').classList.remove('show');
         }
 
-                         function selectDestination(destination) {
+                 function selectDestination(destination) {
             console.log('🎯 Selecting destination:', destination);
             
             try {
@@ -7727,11 +8352,11 @@
                 } else {
                     console.error('❌ Suggestions container not found');
                 }
-                
-                // Pre-load coordinates for popular destinations
-                const coordinates = getPopularDestinationCoordinates(destination);
-                if (coordinates) {
-                    console.log(`📍 Pre-loaded coordinates for ${destination}:`, coordinates);
+             
+             // Pre-load coordinates for popular destinations
+             const coordinates = getPopularDestinationCoordinates(destination);
+             if (coordinates) {
+                 console.log(`📍 Pre-loaded coordinates for ${destination}:`, coordinates);
                 }
                 
                 // Trigger input event to update any listeners
@@ -7753,8 +8378,8 @@
                 
             } catch (error) {
                 console.error('❌ Error in selectDestination:', error);
-            }
-        }
+             }
+         }
 
          function getPopularDestinationCoordinates(destination) {
              // Pre-defined coordinates for popular Indian destinations
@@ -8263,6 +8888,26 @@
             };
             return budgetMap[budget] || budget;
         }
+
+        // Format Toggle Functionality
+        function handleFormatToggle() {
+            const toggle = document.getElementById('formatToggle');
+            const formatInfo = document.getElementById('formatInfo');
+            
+            if (toggle.checked) {
+                formatInfo.innerHTML = 'Professional: AI-generated detailed itinerary with dining, maps, and image tags';
+            } else {
+                formatInfo.innerHTML = 'Standard: Basic itinerary with activities';
+            }
+        }
+
+        // Initialize format toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const formatToggle = document.getElementById('formatToggle');
+            if (formatToggle) {
+                formatToggle.addEventListener('change', handleFormatToggle);
+            }
+        });
 
                  // Dynamic AI-powered destination activities using Google AI Studio
         async function getDestinationActivities(destination, travelStyles) {

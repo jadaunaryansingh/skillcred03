@@ -29,6 +29,40 @@ TRIPADVISOR_API_KEY=your-tripadvisor-api-key-here
 
 # Google AI (Gemini) - for AI itinerary generation
 GEMINI_API_KEY=your-gemini-api-key-here
+
+# ===== NEW FEATURES =====
+
+## 🤖 Google AI Integration
+
+Your travel app now includes **Google AI (Gemini)** powered itinerary generation with:
+
+### Professional Travel Planner Format
+- **Day-wise Plans**: Morning, afternoon, and evening activities
+- **Dining Suggestions**: Breakfast, lunch, and dinner recommendations
+- **Maps & Locations**: Google Maps-friendly location names
+- **Budget Fit**: Activities within your specified budget
+- **Pexels Image Tags**: Keywords for fetching relevant images
+- **Summary Section**: Overall trip vibe and highlights
+
+### How to Get Gemini API Key
+1. Visit [Google AI Studio](https://aistudio.google.com/)
+2. Sign in with your Google account
+3. Create a new API key
+4. Add it to your `.env` file as `GEMINI_API_KEY`
+
+### Usage
+- **Standard Format**: Basic itinerary with activities (existing)
+- **Professional Format**: AI-generated detailed plans with dining, maps, and image tags
+- Toggle between formats using the switch in the search form
+
+## 🎯 Professional Travel Planner Features
+
+- **AI-Generated Content**: Complete itineraries using Google's latest AI
+- **Structured Output**: Organized day-by-day plans with time slots
+- **Local Recommendations**: Authentic dining and activity suggestions
+- **Budget Optimization**: Cost-effective options for your travel style
+- **Image Integration**: Pexels API tags for visual content
+- **Export Options**: Download and share your AI-generated plans
 ```
 
 ## 📁 File Structure

@@ -49,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Import API routes
 const { generateItinerary, searchPexelsImage, geocodeLocation, calculateDistance } = require('./api/itinerary');
+const { generateAIItinerary } = require('./api/gemini-itinerary');
 const { generateActivitiesWithAI } = require('./api/ai-activities');
 const { generatePopularPacks, generateAIReviews, generateDestinationSuggestions } = require('./api/ai-content');
 const { 
@@ -345,10 +346,10 @@ app.post('/api/export/text', authenticateToken, async (req, res) => {
 
 // ===== EXISTING ENDPOINTS =====
 
-// Itinerary generation endpoint
+// AI-Powered Itinerary generation endpoint using Google Gemini
 app.post('/api/generate-itinerary', async (req, res) => {
     try {
-        const { destination, days, interests } = req.body;
+        const { destination, days, interests, budget = 'mid' } = req.body;
         
         if (!destination || !days || !interests) {
             return res.status(400).json({
@@ -356,38 +357,41 @@ app.post('/api/generate-itinerary', async (req, res) => {
             });
         }
         
-        console.log('Generating itinerary for:', { destination, days, interests });
+        console.log('🤖 Generating AI itinerary for:', { destination, days, interests, budget });
         
-        const itinerary = await generateItinerary(destination, days, interests);
+        // Use Google AI to generate the complete itinerary
+        const itinerary = await generateAIItinerary(destination, days, budget, interests);
         
         res.json({
             success: true,
             itinerary,
             destination,
             days,
-            interests
+            interests,
+            budget,
+            generatedBy: itinerary.generatedBy || 'google-ai'
         });
         
     } catch (error) {
-        console.error('Error generating itinerary:', error);
+        console.error('❌ Error generating AI itinerary:', error);
         
         // Handle specific Google AI errors
         if (error.message.includes('API key')) {
             return res.status(401).json({
                 error: 'Invalid or missing Google Gemini API key',
-                details: 'Please check your GEMINI_API_KEY environment variable'
+                details: 'Please add GEMINI_API_KEY to your .env file to use AI-powered itinerary generation'
             });
         }
         
         if (error.message.includes('quota') || error.message.includes('limit')) {
             return res.status(429).json({
-                error: 'API quota exceeded',
+                error: 'AI API quota exceeded',
                 details: 'Please try again later or check your Gemini API quota'
             });
         }
         
         res.status(500).json({
-            error: 'Failed to generate itinerary',
+            error: 'Failed to generate AI itinerary',
             details: error.message
         });
     }
@@ -476,6 +480,49 @@ app.post('/api/generate-activities', async (req, res) => {
     }
 });
 
+// Professional Travel Planner endpoint (Google AI format)
+app.post('/api/travel-planner', async (req, res) => {
+    try {
+        const { city, days, budget } = req.body;
+        
+        if (!city || !days || !budget) {
+            return res.status(400).json({
+                error: 'Missing required fields: city, days, and budget are required'
+            });
+        }
+        
+        console.log('🎯 Professional Travel Planner request:', { city, days, budget });
+        
+        // Use Google AI to generate professional travel planner format
+        const itinerary = await generateAIItinerary(city, days, budget, []);
+        
+        res.json({
+            success: true,
+            itinerary,
+            city,
+            days,
+            budget,
+            generatedBy: 'google-ai-professional-planner',
+            format: 'professional-travel-planner'
+        });
+        
+    } catch (error) {
+        console.error('❌ Professional Travel Planner error:', error);
+        
+        if (error.message.includes('API key')) {
+            return res.status(401).json({
+                error: 'Google AI API key required',
+                details: 'Please add GEMINI_API_KEY to your .env file'
+            });
+        }
+        
+        res.status(500).json({
+            error: 'Failed to generate professional travel plan',
+            details: error.message
+        });
+    }
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
     res.json({ 
@@ -483,6 +530,7 @@ app.get('/api/health', (req, res) => {
         version: '2.0.0',
         features: [
             'AI Itinerary Generation',
+            'Professional Travel Planner',
             'User Authentication',
             'Weather Integration',
             'Currency Conversion',
